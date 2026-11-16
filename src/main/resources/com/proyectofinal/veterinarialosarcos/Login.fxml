@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER"
+      spacing="20"
+      xmlns:fx="http://javafx.com/fxml"
+      xmlns:jfx="http://jfoenix.com/jfx"
+      fx:controller="com.proyectofinal.veterinarialosarcos.controllers.LoginController">
+
+    <JFXTextField fx:id="txtUsuario"
+                  promptText="Usuario"/>
+
+    <JFXPasswordField fx:id="txtPassword"
+                      promptText="Contraseña"/>
+
+    <JFXButton text="Iniciar Sesión"
+               onAction="#login"/>
+
+</VBox>
