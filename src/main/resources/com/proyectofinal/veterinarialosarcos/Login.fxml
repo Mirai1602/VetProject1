@@ -1,23 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER"
-      spacing="20"
-      xmlns:fx="http://javafx.com/fxml"
-      xmlns:jfx="http://jfoenix.com/jfx"
-      fx:controller="com.proyectofinal.veterinarialosarcos.controllers.LoginController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.proyectofinal.veterinarialosarcos.controllers.LoginController"
+           stylesheets="@login.css"
+           styleClass="background">
 
-    <JFXTextField fx:id="txtUsuario"
-                  promptText="Usuario"/>
+    <VBox spacing="20"
+          alignment="CENTER"
+          maxWidth="400"
+          styleClass="login-card">
 
-    <JFXPasswordField fx:id="txtPassword"
-                      promptText="Contraseña"/>
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
 
-    <JFXButton text="Iniciar Sesión"
-               onAction="#login"/>
+        <Label text="🐾 Bienvenido!"
+               styleClass="title"/>
 
-</VBox>
+        <Label text="Registrate para comenzar"
+               styleClass="subtitle"/>
+
+        <TextField
+                fx:id="txtUsuario"
+                promptText="Nombre de usuario"
+                styleClass="input"/>
+        <TextField
+                fx:id="txtCorreo"
+                promptText="Correo electrónico"
+                styleClass="input"/>
+
+        <PasswordField fx:id="txtPassword"
+                       promptText="Contraseña"
+                       styleClass="input"/>
+
+        <PasswordField
+                fx:id="txtConfirmPassword"
+                promptText="Confirmar contraseña"
+                styleClass="input"/>
+
+
+        <Button
+                text="Crear Cuenta"
+                onAction="#registrar"
+                styleClass="login-button"/>
+
+
+        <Button
+                text="¿Ya tienes cuenta? Iniciar sesión"
+                onAction="#mostrarLogin"
+                styleClass="link-button"/>
+    </VBox>
+
+</StackPane>

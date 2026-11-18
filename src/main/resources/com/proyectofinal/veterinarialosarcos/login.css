@@ -1,0 +1,85 @@
+.background {
+    -fx-background-color: linear-gradient(to bottom right,
+    #4facfe,
+    #00f2fe);
+}
+
+.login-card {
+    -fx-background-color: white;
+
+    -fx-background-radius: 20;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.20),
+            25,
+            0,
+            0,
+            8
+    );
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3436;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #636e72;
+}
+
+.input {
+    -fx-pref-width: 280px;
+    -fx-pref-height: 40px;
+
+    -fx-font-size: 14px;
+
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+
+    -fx-border-color: #dfe6e9;
+    -fx-border-width: 2;
+}
+
+.input:focused {
+    -fx-border-color: #00b894;
+}
+
+.login-button {
+
+    -fx-background-color: #00b894;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-pref-width: 280px;
+    -fx-pref-height: 45px;
+
+    -fx-background-radius: 10;
+
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #00a383;
+}
+
+.link-button {
+
+    -fx-background-color: transparent;
+    -fx-text-fill: #0984e3;
+
+    -fx-cursor: hand;
+
+    -fx-font-size: 13px;
+}
+.link-button:hover {
+
+    -fx-text-fill: #0066cc;
+
+    -fx-underline: true;
+}
