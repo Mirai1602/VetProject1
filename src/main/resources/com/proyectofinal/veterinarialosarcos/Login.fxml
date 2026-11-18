@@ -22,40 +22,32 @@
             <Insets top="40" right="40" bottom="40" left="40"/>
         </padding>
 
-        <Label text="🐾 Bienvenido!"
+        <Label text="🐾 ¡Hola de nuevo!"
                styleClass="title"/>
 
-        <Label text="Registrate para comenzar"
+        <Label text="Inicia sesión para cuidar de tus mascotas"
                styleClass="subtitle"/>
 
-        <TextField
-                fx:id="txtUsuario"
-                promptText="Nombre de usuario"
-                styleClass="input"/>
-        <TextField
-                fx:id="txtCorreo"
-                promptText="Correo electrónico"
-                styleClass="input"/>
+        <TextField fx:id="txtUsuario"
+                   promptText="Nombre de usuario"
+                   styleClass="input"/>
 
         <PasswordField fx:id="txtPassword"
                        promptText="Contraseña"
                        styleClass="input"/>
 
-        <PasswordField
-                fx:id="txtConfirmPassword"
-                promptText="Confirmar contraseña"
-                styleClass="input"/>
+        <Label fx:id="lblMensaje"
+               wrapText="true"
+               visible="false"
+               managed="false"/>
 
-
-        <Button
-                text="Crear Cuenta"
-                onAction="#registrar"
+        <Button text="Iniciar Sesión"
+                onAction="#iniciarSesion"
+                defaultButton="true"
                 styleClass="login-button"/>
 
-
-        <Button
-                text="¿Ya tienes cuenta? Iniciar sesión"
-                onAction="#mostrarLogin"
+        <Button text="¿Aún no tienes cuenta? Regístrate aquí"
+                onAction="#mostrarRegistro"
                 styleClass="link-button"/>
     </VBox>
 

@@ -83,3 +83,18 @@
 
     -fx-underline: true;
 }
+.mensaje-error {
+    -fx-text-fill: #d63031;
+    -fx-font-size: 13px;
+}
+
+.mensaje-exito {
+    -fx-text-fill: #00b894;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.input.input-error,
+.input.input-error:focused {
+    -fx-border-color: #d63031;
+}
