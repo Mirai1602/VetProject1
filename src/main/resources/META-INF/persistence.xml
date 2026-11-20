@@ -6,7 +6,9 @@
     <persistence-unit name="veterinariaPU">
 
         <class>com.proyectofinal.veterinarialosarcos.models.Usuario</class>
-
+        <class>com.proyectofinal.veterinarialosarcos.models.Propietario</class>
+        <class>com.proyectofinal.veterinarialosarcos.models.Paciente</class>
+        <class>com.proyectofinal.veterinarialosarcos.models.Citas</class>
         <properties>
 
             <property name="jakarta.persistence.jdbc.driver"

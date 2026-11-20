@@ -83,6 +83,24 @@
 
     -fx-underline: true;
 }
+/* Versión pequeña del botón verde (mismo formato que .login-button) */
+.back-button {
+    -fx-background-color: #00b894;
+    -fx-text-fill: white;
+
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: 8;
+
+    -fx-cursor: hand;
+}
+
+.back-button:hover {
+    -fx-background-color: #00a383;
+}
+
 .mensaje-error {
     -fx-text-fill: #d63031;
     -fx-font-size: 13px;

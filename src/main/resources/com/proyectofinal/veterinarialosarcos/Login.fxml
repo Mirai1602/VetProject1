@@ -46,9 +46,10 @@
                 defaultButton="true"
                 styleClass="login-button"/>
 
-        <Button text="¿Aún no tienes cuenta? Regístrate aquí"
-                onAction="#mostrarRegistro"
-                styleClass="link-button"/>
+        <!-- No hay registro público: el administrador es quien crea las cuentas -->
+        <Label text="¿No tienes cuenta? Pídele al administrador que te registre."
+               wrapText="true"
+               styleClass="subtitle"/>
     </VBox>
 
 </StackPane>

@@ -1,0 +1,118 @@
+/* Estilos de la tabla de pacientes (usa los colores de login.css) */
+
+.tabla-pacientes {
+    -fx-background-color: white;
+    -fx-border-color: #dfe6e9;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 14px;
+}
+
+.tabla-pacientes .column-header-background {
+    -fx-background-color: #00b894;
+    -fx-background-radius: 8 8 0 0;
+}
+
+.tabla-pacientes .column-header,
+.tabla-pacientes .filler {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.tabla-pacientes .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 8;
+}
+
+.tabla-pacientes .table-row-cell {
+    -fx-cell-size: 38px;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #f1f2f6 transparent;
+}
+
+.tabla-pacientes .table-row-cell:odd {
+    -fx-background-color: #f8fdfc;
+}
+
+.tabla-pacientes .table-row-cell:hover {
+    -fx-background-color: #e6f9f4;
+}
+
+.tabla-pacientes .table-row-cell:selected {
+    -fx-background-color: #00b894;
+}
+
+.tabla-pacientes .table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+.tabla-pacientes .table-cell {
+    -fx-text-fill: #2d3436;
+    -fx-padding: 0 0 0 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Botones de acción (Agregar / Guardar / Eliminar) */
+.boton-accion,
+.boton-editar,
+.boton-eliminar {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 38px;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.boton-accion {
+    -fx-background-color: #00b894;
+}
+
+.boton-accion:hover {
+    -fx-background-color: #00a383;
+}
+
+.boton-eliminar {
+    -fx-background-color: #d63031;
+}
+
+.boton-eliminar:hover {
+    -fx-background-color: #b71c1c;
+}
+
+.boton-editar {
+    -fx-background-color: #0984e3;
+}
+
+.boton-editar:hover {
+    -fx-background-color: #0766b1;
+}
+
+.boton-editar:disabled,
+.boton-eliminar:disabled {
+    -fx-opacity: 0.45;
+}
+
+/* Ventana del formulario de paciente */
+.formulario {
+    -fx-background-color: white;
+}
+
+.seccion {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00b894;
+}
+
+/* Tabla de veterinarios (admin): la fila seleccionada no se pinta de verde,
+   solo un gris muy suave para saber cuál está seleccionada */
+.tabla-veterinarios .table-row-cell:selected {
+    -fx-background-color: #f1f2f6;
+}
+
+.tabla-veterinarios .table-row-cell:selected .table-cell {
+    -fx-text-fill: #2d3436;
+}

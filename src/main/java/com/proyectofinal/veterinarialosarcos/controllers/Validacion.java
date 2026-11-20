@@ -42,6 +42,11 @@ final class Validacion {
         mostrar(mensaje, texto, "mensaje-error");
     }
 
+    /** Muestra un error que no corresponde a un campo de texto (ComboBox, fecha, base de datos...). */
+    static void error(Label mensaje, String texto) {
+        mostrar(mensaje, texto, "mensaje-error");
+    }
+
     static void exito(Label mensaje, String texto) {
         mostrar(mensaje, texto, "mensaje-exito");
     }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Reciclado de Registro.fxml: ahora solo lo usa el administrador para añadir veterinarios -->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.proyectofinal.veterinarialosarcos.controllers.VeterinarioFormController"
+      stylesheets="@login.css, @pacientes.css"
+      styleClass="formulario"
+      spacing="16"
+      prefWidth="560">
+
+    <padding>
+        <Insets top="28" right="32" bottom="28" left="32"/>
+    </padding>
+
+    <Label fx:id="lblTitulo" text="🐾 Nuevo veterinario" styleClass="title"/>
+
+    <!-- Datos personales -->
+    <Label text="Datos personales" styleClass="seccion"/>
+    <GridPane hgap="12" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50"/>
+            <ColumnConstraints percentWidth="50"/>
+        </columnConstraints>
+
+        <TextField fx:id="txtNombres" promptText="Nombres"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtApellidos" promptText="Apellidos"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <ComboBox fx:id="cmbSexo" promptText="Sexo"
+                  styleClass="input" maxWidth="Infinity"
+                  GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <DatePicker fx:id="dpFechaNac" promptText="Fecha de nacimiento"
+                    styleClass="input" maxWidth="Infinity"
+                    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <TextField fx:id="txtCorreo" promptText="Correo electrónico"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtTelefono" promptText="Número de teléfono"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    </GridPane>
+
+    <!-- Datos profesionales -->
+    <Label text="Datos profesionales" styleClass="seccion"/>
+    <GridPane hgap="12" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50"/>
+            <ColumnConstraints percentWidth="50"/>
+        </columnConstraints>
+
+        <TextField fx:id="txtCedula" promptText="Cédula (ej. 001-220807-1019M)"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+
+        <TextField fx:id="txtConsultorio" promptText="Nº de consultorio"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtEspecialidad" promptText="Especialidad"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    </GridPane>
+
+    <!-- Credenciales con las que el veterinario iniciará sesión -->
+    <Label text="Acceso al sistema" styleClass="seccion"/>
+    <GridPane hgap="12" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50"/>
+            <ColumnConstraints percentWidth="50"/>
+        </columnConstraints>
+
+        <TextField fx:id="txtUsuario" promptText="Nombre de usuario"
+                   styleClass="input" maxWidth="Infinity"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+
+        <PasswordField fx:id="txtPassword" promptText="Contraseña"
+                       styleClass="input" maxWidth="Infinity"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <PasswordField fx:id="txtConfirmPassword" promptText="Confirmar contraseña"
+                       styleClass="input" maxWidth="Infinity"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    </GridPane>
+
+    <Label fx:id="lblMensaje"
+           wrapText="true"
+           visible="false"
+           managed="false"/>
+
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <Button text="Cancelar"
+                onAction="#cancelar"
+                cancelButton="true"
+                styleClass="link-button"/>
+        <Button fx:id="btnGuardar"
+                text="Crear cuenta"
+                onAction="#registrar"
+                defaultButton="true"
+                styleClass="boton-accion"/>
+    </HBox>
+
+</VBox>
