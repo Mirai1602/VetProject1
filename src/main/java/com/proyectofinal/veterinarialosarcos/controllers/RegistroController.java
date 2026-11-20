@@ -1,5 +1,9 @@
 package com.proyectofinal.veterinarialosarcos.controllers;
 
+import com.proyectofinal.veterinarialosarcos.models.Usuario;
+import com.proyectofinal.veterinarialosarcos.repositories.UsuarioRepository;
+import com.proyectofinal.veterinarialosarcos.services.UsuarioService;
+import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -58,6 +62,15 @@ public class RegistroController {
         }
 
         // TODO: guardar el usuario en la base de datos.
+        UsuarioRepository repository =
+                new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
+        UsuarioService service = new UsuarioService(repository);
+        service.ResgiatrarUsuario(
+                txtUsuario.getText(),
+                txtCorreo.getText(),
+                txtPassword.getText()
+
+        );
         Validacion.exito(lblMensaje, "¡Cuenta creada! Ya puedes iniciar sesión.");
     }
 

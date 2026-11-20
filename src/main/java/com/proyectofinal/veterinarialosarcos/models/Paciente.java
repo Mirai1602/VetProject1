@@ -130,7 +130,7 @@ public class Paciente {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
 

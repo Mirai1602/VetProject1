@@ -67,8 +67,9 @@ public class Propietario {
 
     private String telefono;
     //Un Propietario puede tener varios paciente (mascotas)
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "propietario")
     private List<Paciente> pacientes = new ArrayList<>();
+
 
 
     public Propietario() {

@@ -5,23 +5,23 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Negocio", nullable = false)
+    @Column(name = "negocio", nullable = false)
     private String nombreNegocio;
 
-    @Column(name = "Email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "Contrasenia", nullable = false)
+    @Column(name = "contrasenia", nullable = false)
     private String password;
 
-    @Column(name = "FechaCreacion")
+    @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
 
     public Usuario() {
@@ -71,4 +71,5 @@ public class Usuario {
     }
     @OneToMany(mappedBy = "usuario")
     private List<Paciente> pacientes;
+
 }
