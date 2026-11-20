@@ -26,5 +26,14 @@ public class UsuarioService {
         repository.GuadarUsuario(usuario);
 
     }
+    public boolean autenticarUsuario(String email, String password){
+        Usuario usuario = repository.buscarPorEmail(email);
+        if(usuario == null){
+            return false;
+        }
+        //En caso de que no este vacio, retorna el usuario que sea igual a la contraseña ingresada
+        return usuario.getPassword().equals(password);
+
+    }
 
 }

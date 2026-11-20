@@ -64,6 +64,11 @@ public class RegistroController {
         // TODO: guardar el usuario en la base de datos.
         UsuarioRepository repository =
                 new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
+        UsuarioService Service =
+                new UsuarioService(repository);
+
+        boolean acceso = Service.autenticarUsuario(
+        txtUsuario.getText().trim(), txtPassword.getText());
         UsuarioService service = new UsuarioService(repository);
         service.ResgiatrarUsuario(
                 txtUsuario.getText(),
@@ -71,6 +76,17 @@ public class RegistroController {
                 txtPassword.getText()
 
         );
+
+        //Si es diferente a la accion de acceso envia el mensaje
+        if(!acceso){
+            Validacion.error(
+                    lblMensaje,
+                    txtPassword,
+                    "Usuario o contraseña incorrecta"
+            );
+            return;
+
+        }
         Validacion.exito(lblMensaje, "¡Cuenta creada! Ya puedes iniciar sesión.");
     }
 

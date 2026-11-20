@@ -1,5 +1,7 @@
 package com.proyectofinal.veterinarialosarcos.controllers;
 
+import com.proyectofinal.veterinarialosarcos.repositories.UsuarioRepository;
+import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -29,6 +31,8 @@ public class LoginController {
         }
 
         // TODO: comprobar las credenciales contra la base de datos.
+        UsuarioRepository repository =
+                new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
         Validacion.exito(lblMensaje, "¡Bienvenido, " + txtUsuario.getText().trim() + "!");
     }
 

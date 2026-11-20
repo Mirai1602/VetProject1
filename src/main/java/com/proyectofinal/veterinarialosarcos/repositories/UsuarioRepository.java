@@ -32,4 +32,20 @@ public class UsuarioRepository {
             //Y al final por favor cierralo
         }
     }
+
+   //Integracion del metodo que permitira iniciar sesion
+    public Usuario buscarPorEmail(String email) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery(
+                    "SELECT u from Usuario u where u.email = u.email",
+                    Usuario.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        }catch ( Exception e){
+            return null;
+        }finally {
+            em.close();
+        }
+    }
 }
