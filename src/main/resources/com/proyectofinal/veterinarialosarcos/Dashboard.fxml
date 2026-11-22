@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.proyectofinal.veterinarialosarcos.controllers.DashboardController"
+            stylesheets="@dashboard.css">
+
+    <!-- Menú lateral -->
+
+    <left>
+        <VBox spacing="15"
+              prefWidth="220"
+              styleClass="sidebar">
+
+            <Label fx:id="lblUsuario"
+                   text="Vet1"
+                   styleClass="user-name"/>
+
+            <Button text="🐾 Pacientes"
+                    onAction="#abrirPacientes"
+                    styleClass="menu-button"/>
+
+            <Button text="⚙ Ajustes"
+                    onAction="#abrirAjustes"
+                    styleClass="menu-button"/>
+
+            <Button text="🚪 Cerrar Sesión"
+                    onAction="#cerrarSesion"
+                    styleClass="logout-button"/>
+
+        </VBox>
+    </left>
+
+    <!-- Zona principal -->
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="25"
+              styleClass="welcome-container">
+
+            <Label text="¡Bienvenido de nuevo!"
+                   styleClass="welcome-title"/>
+
+            <Label text="Gestiona expedientes clínicos digitales de manera rápida y organizada."
+                   wrapText="true"
+                   styleClass="welcome-text"/>
+
+            <StackPane styleClass="pet-card">
+
+                <VBox alignment="CENTER"
+                      spacing="10">
+
+                    <Label text="🐾"
+                           styleClass="paw-icon"/>
+
+                    <Label text="Sistema de registro PetCloud"
+                           styleClass="card-title"/>
+
+                    <Label text="Selecciona 'Pacientes' para comenzar."
+                           styleClass="card-text"/>
+
+                </VBox>
+
+            </StackPane>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

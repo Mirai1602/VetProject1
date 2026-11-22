@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.proyectofinal.veterinarialosarcos.controllers.NuevoPacienteController"
+      spacing="20"
+      stylesheets="@nuevoPaciente.css"
+      styleClass="root-container">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Nuevo Paciente"
+           styleClass="title"/>
+
+    <HBox spacing="40">
+
+        <!-- DATOS DEL PACIENTE -->
+
+        <VBox spacing="12">
+
+            <Label text="Datos del Paciente"
+                   styleClass="section-title"/>
+
+            <TextField fx:id="txtNombrePaciente"
+                       promptText="Nombre"/>
+
+            <ComboBox fx:id="cmbEspecie"
+                      promptText="Especie"/>
+
+            <TextField fx:id="txtRaza"
+                       promptText="Raza"/>
+
+            <Label text="Fecha de nacimiento"/>
+
+            <DatePicker fx:id="dpFechaNacimiento"/>
+
+            <CheckBox fx:id="chkFechaDesconocida"
+                      text="No se conoce la fecha de nacimiento"/>
+
+            <TextField fx:id="txtEdadAproximada"
+                       promptText="Edad aproximada (años)"
+                       disable="true"/>
+
+        </VBox>
+

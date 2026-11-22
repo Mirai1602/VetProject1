@@ -1,0 +1,121 @@
+.root {
+    -fx-font-family: "Segoe UI";
+}
+
+.sidebar {
+
+    -fx-background-color: #5F9EA0;
+
+    -fx-padding: 20;
+}
+
+.user-name {
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 20px;
+
+    -fx-font-weight: bold;
+
+    -fx-padding: 0 0 20 0;
+}
+
+.menu-button {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+
+    -fx-alignment: CENTER_LEFT;
+
+    -fx-cursor: hand;
+
+    -fx-pref-width: 180px;
+
+    -fx-padding: 12;
+}
+
+.menu-button:hover {
+
+    -fx-background-color: #018081;
+
+    -fx-background-radius: 8;
+}
+
+.logout-button {
+
+    -fx-background-color: #0F2A2A;
+
+    -fx-text-fill: white;
+
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 8;
+
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+
+    -fx-background-color: #c0392b;
+}
+
+.welcome-container {
+
+    -fx-background-color: #f5f6fa;
+}
+
+.welcome-title {
+
+    -fx-font-size: 30px;
+
+    -fx-font-weight: bold;
+
+    -fx-text-fill: #2d3436;
+}
+
+.welcome-text {
+
+    -fx-font-size: 15px;
+
+    -fx-text-fill: #636e72;
+
+    -fx-max-width: 500;
+}
+
+.pet-card {
+
+    -fx-background-color: white;
+
+    -fx-background-radius: 20;
+
+    -fx-padding: 30;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.15),
+            15,
+            0,
+            0,
+            3
+    );
+}
+
+.paw-icon {
+
+    -fx-font-size: 80px;
+}
+
+.card-title {
+
+    -fx-font-size: 20px;
+
+    -fx-font-weight: bold;
+}
+
+.card-text {
+
+    -fx-text-fill: #636e72;
+}

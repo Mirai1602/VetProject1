@@ -25,7 +25,7 @@
         <Label text="🐾 ¡Hola de nuevo!"
                styleClass="title"/>
 
-        <Label text="Inicia sesión para cuidar de tus mascotas"
+        <Label text="Por favor ingresa los datos:"
                styleClass="subtitle"/>
 
         <TextField fx:id="txtUsuario"

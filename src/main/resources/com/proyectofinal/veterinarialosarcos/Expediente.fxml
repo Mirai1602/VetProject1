@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fitToWidth="true"
+            stylesheets="@expediente.css">
+
+    <VBox spacing="20"
+          styleClass="main-container">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Button text="← Volver a Pacientes"
+                styleClass="volver-button"/>
+
+        <Label text="Expediente Clínico"
+               styleClass="title"/>
+
+        <VBox spacing="10"
+              styleClass="info-card">
+
+            <Label text="Paciente: Max"/>
+
+            <Label text="Especie: Canina"/>
+
+            <Label text="Raza: Husky"/>
+
+            <Label text="Propietario: Ana"/>
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="section-card">
+
+            <Label text="Historial de Vacunación"
+                   styleClass="section-title"/>
+
+            <TextArea fx:id="txtVacunas"
+                      prefHeight="120"/>
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="section-card">
+
+            <Label text="Historial de Desparasitación"
+                   styleClass="section-title"/>
+
+            <TextArea fx:id="txtDesparasitacion"
+                      prefHeight="120"/>
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="section-card">
+
+            <Label text="Control de Parásitos"
+                   styleClass="section-title"/>
+
+            <TextArea fx:id="txtParasitos"
+                      prefHeight="120"/>
+        </VBox>
+
+        <VBox spacing="8"
+              styleClass="section-card">
+
+            <Label text="Observaciones"
+                   styleClass="section-title"/>
+
+            <TextArea fx:id="txtObservaciones"
+                      prefHeight="180"/>
+        </VBox>
+
+        <Button text="Guardar Cambios"
+                styleClass="save-button"/>
+
+    </VBox>
+
+</ScrollPane>

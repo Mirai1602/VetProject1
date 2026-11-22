@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.proyectofinal.veterinarialosarcos.controllers.PacienteController"
+            stylesheets="@paciente.css">
+
+    <top>
+
+        <VBox spacing="15"
+              styleClass="header-container">
+
+            <Label text="🐾 Pacientes"
+                   styleClass="title"/>
+
+            <HBox spacing="10">
+
+                <TextField fx:id="txtBuscar"
+                           promptText="Buscar paciente..."
+                           styleClass="search-field"/>
+
+                <Button text="+ Nuevo Paciente"
+                        onAction="#nuevoPaciente"
+                        styleClass="new-button"/>
+
+            </HBox>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <TableView fx:id="tablaPacientes"
+                   styleClass="patients-table">
+
+            <columns>
+
+                <TableColumn fx:id="colNombre"
+                             text="Nombre"
+                             prefWidth="180"/>
+
+                <TableColumn fx:id="colEspecie"
+                             text="Especie"
+                             prefWidth="150"/>
+
+                <TableColumn fx:id="colRaza"
+                             text="Raza"
+                             prefWidth="180"/>
+
+                <TableColumn fx:id="colOwner"
+                             text="Propietario"
+                             prefWidth="180"/>
+
+                <TableColumn fx:id="colExpediente"
+                             text="Expediente"
+                             prefWidth="220"/>
+
+            </columns>
+
+        </TableView>
+
+    </center>
+
+</BorderPane>

@@ -4,9 +4,14 @@ import com.proyectofinal.veterinarialosarcos.repositories.UsuarioRepository;
 import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -30,11 +35,14 @@ public class LoginController {
             return;
         }
 
-        // TODO: comprobar las credenciales contra la base de datos.
-        UsuarioRepository repository =
-                new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
-        Validacion.exito(lblMensaje, "¡Bienvenido, " + txtUsuario.getText().trim() + "!");
+        //UsuarioRepository repository =
+                //new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
+        //Validacion.exito(lblMensaje, "¡Bienvenido, " + txtUsuario.getText().trim() + "!");
+
+        Navegacion.irA(event, "Dashboard.fxml");
     }
+
+
 
     @FXML
     private void mostrarRegistro(ActionEvent event) {

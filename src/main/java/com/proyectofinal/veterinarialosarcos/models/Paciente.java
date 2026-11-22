@@ -22,15 +22,31 @@ public class Paciente {
 
     @Column(nullable = false)
     private String nombre;
+    @Enumerated(EnumType.STRING)
     @Column(name = "especie")
     private Especie especie;
     private String raza;
 
     private LocalDate FechaNac;
+    private Integer edad;
 
+
+    public Paciente(boolean fechaNacimientoConocida) {
+        this.fechaNacimientoConocida = fechaNacimientoConocida;
+    }
+
+    public boolean isFechaNacimientoConocida() {
+        return fechaNacimientoConocida;
+    }
+
+    public void setFechaNacimientoConocida(boolean fechaNacimientoConocida) {
+        this.fechaNacimientoConocida = fechaNacimientoConocida;
+    }
+
+    private boolean fechaNacimientoConocida;
     private boolean genero;
 
-    public Paciente(Long id, String numPaciente, String numExpediente, String nombre, String raza, Especie especie, LocalDate fechaNac, boolean genero, Propietario propietario) {
+    public Paciente(Long id, String numPaciente, String numExpediente, String nombre, String raza, Especie especie, LocalDate fechaNac,Integer Edad, boolean genero, Propietario propietario) {
         this.id = id;
         this.numPaciente = numPaciente;
         this.numExpediente = numExpediente;
@@ -38,6 +54,7 @@ public class Paciente {
         this.raza = raza;
         this.especie = especie;
         FechaNac = fechaNac;
+        this.edad = Edad;
         this.genero = genero;
         this.propietario = propietario;
     }
@@ -68,6 +85,12 @@ public class Paciente {
 
     public void setFechaNac(LocalDate fechaNac) {
         FechaNac = fechaNac;
+    }
+    public Integer getEdad() {
+        return edad;
+    }
+    public void setEdad(Integer edad) {
+        this.edad = edad;
     }
 
     public String getRaza() {

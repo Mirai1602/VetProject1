@@ -1,0 +1,78 @@
+.main-container {
+    -fx-background-color: #f5f6fa;
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.info-card {
+
+    -fx-background-color: white;
+    -fx-padding: 15;
+
+    -fx-background-radius: 15;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.10),
+            12,
+            0,
+            0,
+            3
+    );
+}
+
+.section-card {
+
+    -fx-background-color: white;
+
+    -fx-padding: 15;
+
+    -fx-background-radius: 15;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.10),
+            12,
+            0,
+            0,
+            3
+    );
+}
+
+.section-title {
+
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.save-button {
+
+    -fx-background-color: #00b894;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-pref-height: 45px;
+
+    -fx-background-radius: 10;
+
+    -fx-cursor: hand;
+}
+
+.save-button:hover {
+    -fx-background-color: #00a383;
+}
+
+.volver-button {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #0984e3;
+
+    -fx-cursor: hand;
+}
