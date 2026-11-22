@@ -1,10 +1,9 @@
 package com.proyectofinal.veterinarialosarcos.controllers;
 
+import com.proyectofinal.veterinarialosarcos.enumerados.Sexo;
 import com.proyectofinal.veterinarialosarcos.models.Paciente;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class NuevoPacienteController {
     @FXML
@@ -15,9 +14,19 @@ public class NuevoPacienteController {
 
     @FXML
     private TextField txtEdadAproximada;
+    @FXML
+    private RadioButton rbMacho;
+
+    @FXML
+    private RadioButton rbHembra;
+    private ToggleGroup sexoGroup;
 
     @FXML
     private void initialize() {
+        sexoGroup = new ToggleGroup();
+
+        rbMacho.setToggleGroup(sexoGroup);
+        rbHembra.setToggleGroup(sexoGroup);
 
         chkFechaDesconocida.selectedProperty().addListener(
                 (obs, anterior, seleccionado) -> {
@@ -31,6 +40,19 @@ public class NuevoPacienteController {
                     }
                 }
         );
+    }
+
+    private Sexo obtenerSexo() {
+
+        if (rbMacho.isSelected()) {
+            return Sexo.MACHO;
+        }
+
+        if (rbHembra.isSelected()) {
+            return Sexo.HEMBRA;
+        }
+
+        return null;
     }
 
     @FXML

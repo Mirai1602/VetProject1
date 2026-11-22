@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.RadioButton?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.proyectofinal.veterinarialosarcos.controllers.NuevoPacienteController"
       spacing="20"
@@ -38,6 +39,15 @@
 
             <ComboBox fx:id="cmbEspecie"
                       promptText="Especie"/>
+            <HBox spacing="15">
+
+                <RadioButton fx:id="rbMacho"
+                             text="Macho"/>
+
+                <RadioButton fx:id="rbHembra"
+                             text="Hembra"/>
+
+            </HBox>
 
             <TextField fx:id="txtRaza"
                        promptText="Raza"/>

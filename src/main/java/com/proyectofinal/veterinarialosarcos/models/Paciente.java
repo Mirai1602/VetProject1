@@ -1,6 +1,7 @@
 package com.proyectofinal.veterinarialosarcos.models;
 
 import com.proyectofinal.veterinarialosarcos.enumerados.Especie;
+import com.proyectofinal.veterinarialosarcos.enumerados.Sexo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -27,6 +28,19 @@ public class Paciente {
     private Especie especie;
     private String raza;
 
+    public Paciente(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    private Sexo sexo;
     private LocalDate FechaNac;
     private Integer edad;
 
