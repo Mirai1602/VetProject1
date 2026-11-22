@@ -9,7 +9,35 @@ import org.hibernate.annotations.Parent;
 
 public class PacienteController {
 
+    @FXML
+    private void nuevoPaciente(ActionEvent event) {
+        try {
 
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    "/com/proyectofinal/veterinarialosarcos/NuevoPaciente.fxml"
+                            )
+                    );
 
+            Scene scene =
+                    new Scene(loader.load());
+
+            Stage stage = new Stage();
+
+            stage.setTitle("Nuevo Paciente");
+
+            stage.setScene(scene);
+
+            stage.showAndWait();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 }
+
+
+
+

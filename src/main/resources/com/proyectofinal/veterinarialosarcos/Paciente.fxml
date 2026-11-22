@@ -21,7 +21,7 @@
                            promptText="Buscar paciente..."
                            styleClass="search-field"/>
 
-                <Button text="+ Nuevo Paciente"
+                <Button text="Nuevo Paciente"
                         onAction="#nuevoPaciente"
                         styleClass="new-button"/>
 

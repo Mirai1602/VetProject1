@@ -1,5 +1,6 @@
 package com.proyectofinal.veterinarialosarcos.controllers;
 
+import com.proyectofinal.veterinarialosarcos.models.Paciente;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -30,5 +31,15 @@ public class NuevoPacienteController {
                     }
                 }
         );
+    }
+
+    @FXML
+    private void guardarPaciente() {
+        Paciente paciente = new Paciente();
+    }
+
+    @FXML
+    private void cancelar() {
+        System.out.println("Cancelando");
     }
 }
