@@ -70,7 +70,7 @@
             <VBox styleClass="card" spacing="10" HBox.hgrow="ALWAYS" maxWidth="Infinity">
                 <Label text="🔑 Cuenta" styleClass="card-title"/>
 
-                <Label text="NOMBRE DE USUARIO" styleClass="field-label"/>
+                <Label text="NOMBRE DE NEGOCIO" styleClass="field-label"/>
                 <TextField fx:id="txtUsuario" promptText="Nombre de usuario"/>
                 <Label text="Es el nombre con el que inicias sesión (mínimo 3 caracteres, sin espacios)."
                        wrapText="true" styleClass="hint"/>
