@@ -5,12 +5,18 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.proyectofinal.veterinarialosarcos.controllers.PacienteController"
-            stylesheets="@paciente.css">
+            stylesheets="@paciente.css"
+            prefWidth="1100"
+            prefHeight="700">
 
     <top>
 
         <VBox spacing="15"
               styleClass="header-container">
+
+            <Button text="← Atrás"
+                    onAction="#regresar"
+                    styleClass="back-button"/>
 
             <Label text="🐾 Pacientes"
                    styleClass="title"/>
@@ -25,6 +31,10 @@
                         onAction="#nuevoPaciente"
                         styleClass="new-button"/>
 
+                <Button text="📋 Ver expediente"
+                        onAction="#verExpediente"
+                        styleClass="new-button"/>
+
             </HBox>
 
         </VBox>
@@ -35,6 +45,9 @@
 
         <TableView fx:id="tablaPacientes"
                    styleClass="patients-table">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
 
             <columns>
 

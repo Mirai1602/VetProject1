@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Centro de ayuda. Archivo generado a partir de una lista de secciones;
+     puede editarse a mano normalmente. -->
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.proyectofinal.veterinarialosarcos.controllers.AyudaController"
+            stylesheets="@app.css"
+            styleClass="scroll-page"
+            fitToWidth="true"
+            prefWidth="1100"
+            prefHeight="700">
+
+    <VBox styleClass="page" spacing="20">
+
+        <Button text="← Atrás"
+                onAction="#regresar"
+                styleClass="back-button"/>
+
+        <VBox styleClass="help-hero" spacing="8">
+            <Label text="❓ Centro de ayuda" styleClass="help-hero-title"/>
+            <Label text="Aquí encontrarás instrucciones paso a paso para usar el sistema de expedientes clínicos PetCloud."
+                   wrapText="true" styleClass="help-hero-text"/>
+        </VBox>
+
+        <FlowPane hgap="20" vgap="20" prefWrapLength="1000">
+            <VBox styleClass="card" spacing="12" prefWidth="490">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="🔐" styleClass="help-section-icon"/>
+                    <VBox spacing="2">
+                        <Label text="Iniciar sesión y registrarte" styleClass="card-title"/>
+                        <Label text="Tu acceso al sistema." styleClass="subtitle"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="1" styleClass="step-number"/>
+                    <Label text="Si es tu primera vez, en la pantalla de inicio pulsa «¿Aún no tienes cuenta? Regístrate aquí»." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="2" styleClass="step-number"/>
+                    <Label text="Escribe un nombre de usuario (mínimo 3 caracteres), tu correo y una contraseña de al menos 6 caracteres." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="3" styleClass="step-number"/>
+                    <Label text="Vuelve al inicio de sesión y entra con tu nombre de usuario y contraseña." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="4" styleClass="step-number"/>
+                    <Label text="Al terminar tu jornada pulsa «🚪 Cerrar Sesión» en el menú lateral para proteger la información." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+            </VBox>
+            <VBox styleClass="card" spacing="12" prefWidth="490">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="🐾" styleClass="help-section-icon"/>
+                    <VBox spacing="2">
+                        <Label text="Pacientes" styleClass="card-title"/>
+                        <Label text="Consulta y registra a las mascotas." styleClass="subtitle"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="1" styleClass="step-number"/>
+                    <Label text="En el menú lateral pulsa «🐾 Pacientes» para ver la lista completa." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="2" styleClass="step-number"/>
+                    <Label text="Usa la barra «Buscar paciente...» para filtrar por nombre, especie, raza, propietario o número de expediente." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="3" styleClass="step-number"/>
+                    <Label text="Pulsa «Nuevo Paciente» y llena los datos: nombre, especie (Perro o Gato), sexo, raza y fecha de nacimiento." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="4" styleClass="step-number"/>
+                    <Label text="Si no conoces la fecha de nacimiento, marca la casilla y escribe la edad aproximada en años." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="5" styleClass="step-number"/>
+                    <Label text="Completa los datos del propietario (el nombre es obligatorio) y pulsa «Guardar Paciente»." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+            </VBox>
+            <VBox styleClass="card" spacing="12" prefWidth="490">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="📋" styleClass="help-section-icon"/>
+                    <VBox spacing="2">
+                        <Label text="Expediente clínico" styleClass="card-title"/>
+                        <Label text="El historial médico de cada paciente." styleClass="subtitle"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="1" styleClass="step-number"/>
+                    <Label text="Selecciona un paciente y pulsa «📋 Ver expediente», o haz doble clic sobre él." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="2" styleClass="step-number"/>
+                    <Label text="Revisa los datos generales del paciente y su propietario en la parte superior." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="3" styleClass="step-number"/>
+                    <Label text="Escribe el historial de vacunación, desparasitación, control de parásitos y observaciones." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="4" styleClass="step-number"/>
+                    <Label text="Pulsa «Guardar Cambios» para conservar la información. Usa «← Atrás» para cerrar el expediente." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+            </VBox>
+            <VBox styleClass="card" spacing="12" prefWidth="490">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="📊" styleClass="help-section-icon"/>
+                    <VBox spacing="2">
+                        <Label text="Resumen de pacientes" styleClass="card-title"/>
+                        <Label text="Una vista general de tu clínica." styleClass="subtitle"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="1" styleClass="step-number"/>
+                    <Label text="Pulsa «📊 Resumen de pacientes» en el menú lateral." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="2" styleClass="step-number"/>
+                    <Label text="Arriba verás el total de pacientes y cuántos perros y gatos hay registrados." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="3" styleClass="step-number"/>
+                    <Label text="La tabla agrupa a los pacientes por especie; usa la flecha de cada grupo para mostrarlo u ocultarlo." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="4" styleClass="step-number"/>
+                    <Label text="Selecciona un paciente y pulsa «📋 Ver expediente» para abrir su historial." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+            </VBox>
+            <VBox styleClass="card" spacing="12" prefWidth="490">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="⚙" styleClass="help-section-icon"/>
+                    <VBox spacing="2">
+                        <Label text="Ajustes y perfil" styleClass="card-title"/>
+                        <Label text="Personaliza tu cuenta." styleClass="subtitle"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="1" styleClass="step-number"/>
+                    <Label text="Pulsa «⚙ Ajustes» para ver tu perfil." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="2" styleClass="step-number"/>
+                    <Label text="Con «📷 Cambiar foto» eliges una imagen (PNG, JPG o GIF de hasta 2 MB) como foto de perfil." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="3" styleClass="step-number"/>
+                    <Label text="Puedes cambiar tu nombre de usuario y agregar tu nombre, apellido y fecha de nacimiento (debes ser mayor de 15 años)." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="4" styleClass="step-number"/>
+                    <Label text="Pulsa «💾 Guardar cambios» para aplicar los cambios." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="5" styleClass="step-number"/>
+                    <Label text="Para cambiar tu contraseña pulsa «Cambiar contraseña»: primero confirma la actual y después escribe la nueva dos veces." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
+            </VBox>
+        </FlowPane>
+
+        <VBox styleClass="tip-box" spacing="8">
+            <Label text="💡 Consejos útiles" styleClass="tip-title"/>
+            <Label text="• Cada cuenta ve únicamente los pacientes que ella misma registró." wrapText="true" styleClass="step-text"/>
+            <Label text="• Tu contraseña se guarda cifrada: nadie puede leerla, ni siquiera desde la base de datos." wrapText="true" styleClass="step-text"/>
+            <Label text="• Si cambias tu nombre de usuario, recuerda usar el nuevo la próxima vez que inicies sesión." wrapText="true" styleClass="step-text"/>
+            <Label text="• Guarda el expediente cada vez que hagas cambios; al cerrarlo sin guardar se pierden." wrapText="true" styleClass="step-text"/>
+            <Label text="• En casi todas las pantallas encontrarás el botón «← Atrás» para volver al menú principal." wrapText="true" styleClass="step-text"/>
+        </VBox>
+
+    </VBox>
+
+</ScrollPane>

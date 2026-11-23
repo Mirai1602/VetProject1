@@ -40,6 +40,7 @@ public class Paciente {
         this.sexo = sexo;
     }
 
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
     private LocalDate FechaNac;
     private Integer edad;
@@ -50,15 +51,17 @@ public class Paciente {
     }
 
     public boolean isFechaNacimientoConocida() {
-        return fechaNacimientoConocida;
+        return Boolean.TRUE.equals(fechaNacimientoConocida);
     }
 
     public void setFechaNacimientoConocida(boolean fechaNacimientoConocida) {
         this.fechaNacimientoConocida = fechaNacimientoConocida;
     }
 
-    private boolean fechaNacimientoConocida;
-    private boolean genero;
+    // Boolean (no boolean) para que la columna admita null y Hibernate pueda
+    // agregarla aunque la tabla ya tenga filas.
+    private Boolean fechaNacimientoConocida;
+    private Boolean genero;
 
     public Paciente(Long id, String numPaciente, String numExpediente, String nombre, String raza, Especie especie, LocalDate fechaNac,Integer Edad, boolean genero, Propietario propietario) {
         this.id = id;
@@ -86,7 +89,7 @@ public class Paciente {
     }
 
     public boolean isGenero() {
-        return genero;
+        return Boolean.TRUE.equals(genero);
     }
 
     public void setGenero(boolean genero) {
@@ -161,14 +164,103 @@ public class Paciente {
 
 
     //Metodo para calcular la edad del paciente
-    @Transient
     public int getEdadMeses(){
-        return Period.between(FechaNac, LocalDate.now()).getMonths();
+        if (FechaNac == null) {
+            return edad == null ? 0 : edad * 12;
+        }
+        return (int) Period.between(FechaNac, LocalDate.now()).toTotalMonths();
     }
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    //Datos del expediente clínico
+    @Column(name = "historial_vacunas", columnDefinition = "text")
+    private String historialVacunas;
+
+    @Column(name = "historial_desparasitacion", columnDefinition = "text")
+    private String historialDesparasitacion;
+
+    @Column(name = "control_parasitos", columnDefinition = "text")
+    private String controlParasitos;
+
+    @Column(name = "observaciones", columnDefinition = "text")
+    private String observaciones;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getHistorialVacunas() {
+        return historialVacunas;
+    }
+
+    public void setHistorialVacunas(String historialVacunas) {
+        this.historialVacunas = historialVacunas;
+    }
+
+    public String getHistorialDesparasitacion() {
+        return historialDesparasitacion;
+    }
+
+    public void setHistorialDesparasitacion(String historialDesparasitacion) {
+        this.historialDesparasitacion = historialDesparasitacion;
+    }
+
+    public String getControlParasitos() {
+        return controlParasitos;
+    }
+
+    public void setControlParasitos(String controlParasitos) {
+        this.controlParasitos = controlParasitos;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    /** Edad legible, p. ej. "2 años 3 meses". */
+    public String getEdadTexto() {
+        int meses = getEdadMeses();
+        if (FechaNac == null && edad == null) {
+            return "Sin dato";
+        }
+        int anios = meses / 12;
+        int resto = meses % 12;
+        String texto = anios > 0 ? anios + (anios == 1 ? " año" : " años") : "";
+        if (resto > 0) {
+            texto += (texto.isEmpty() ? "" : " ") + resto + (resto == 1 ? " mes" : " meses");
+        }
+        if (texto.isEmpty()) {
+            texto = "Menos de 1 mes";
+        }
+        return FechaNac == null ? "≈ " + texto : texto;
+    }
+
+    /** Nombre de la especie con mayúscula inicial, p. ej. "Perro". */
+    public String getEspecieTexto() {
+        if (especie == null) {
+            return "Sin especie";
+        }
+        String n = especie.name().toLowerCase();
+        return Character.toUpperCase(n.charAt(0)) + n.substring(1);
+    }
+
+    public String getSexoTexto() {
+        if (sexo == null) {
+            return "—";
+        }
+        return sexo == Sexo.MACHO ? "Macho" : "Hembra";
+    }
 
 
 

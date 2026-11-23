@@ -14,8 +14,6 @@
         <junit.version>5.12.1</junit.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <property name="hibernate.hbm2ddl.auto"
-                  value="update"/>
     </properties>
 
 

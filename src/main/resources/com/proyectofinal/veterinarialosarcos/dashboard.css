@@ -119,3 +119,35 @@
 
     -fx-text-fill: #636e72;
 }
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.back-button:hover {
+    -fx-underline: true;
+}
+
+.sidebar-avatar {
+    -fx-background-color: #018081;
+    -fx-background-radius: 32;
+    -fx-min-width: 64;
+    -fx-min-height: 64;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 32;
+}
+
+.sidebar-initial {
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.menu-button {
+    -fx-pref-width: 200px;
+}

@@ -2,35 +2,61 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.proyectofinal.veterinarialosarcos.controllers.DashboardController"
-            stylesheets="@dashboard.css">
+            stylesheets="@dashboard.css"
+            prefWidth="1100"
+            prefHeight="700">
 
     <!-- Menú lateral -->
 
     <left>
-        <VBox spacing="15"
-              prefWidth="220"
+        <VBox spacing="10"
+              prefWidth="230"
               styleClass="sidebar">
+
+            <Button text="← Atrás"
+                    onAction="#regresar"
+                    styleClass="back-button"/>
+
+            <!-- Foto de perfil (o inicial si no hay foto) -->
+            <StackPane styleClass="sidebar-avatar" maxWidth="64" maxHeight="64">
+                <Label fx:id="lblInicial" text="V" styleClass="sidebar-initial"/>
+                <ImageView fx:id="imgPerfil" fitWidth="64" fitHeight="64" preserveRatio="false"/>
+            </StackPane>
 
             <Label fx:id="lblUsuario"
                    text="Vet1"
+                   wrapText="true"
                    styleClass="user-name"/>
 
             <Button text="🐾 Pacientes"
                     onAction="#abrirPacientes"
                     styleClass="menu-button"/>
 
+            <Button text="📊 Resumen de pacientes"
+                    onAction="#abrirResumen"
+                    styleClass="menu-button"/>
+
             <Button text="⚙ Ajustes"
                     onAction="#abrirAjustes"
                     styleClass="menu-button"/>
 
+            <Button text="❓ Ayuda"
+                    onAction="#abrirAyuda"
+                    styleClass="menu-button"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
             <Button text="🚪 Cerrar Sesión"
                     onAction="#cerrarSesion"
+                    maxWidth="Infinity"
                     styleClass="logout-button"/>
 
         </VBox>
@@ -44,7 +70,9 @@
               spacing="25"
               styleClass="welcome-container">
 
-            <Label text="¡Bienvenido de nuevo!"
+            <Label fx:id="lblBienvenida"
+                   text="¡Bienvenido de nuevo!"
+                   wrapText="true"
                    styleClass="welcome-title"/>
 
             <Label text="Gestiona expedientes clínicos digitales de manera rápida y organizada."
@@ -62,7 +90,7 @@
                     <Label text="Sistema de registro PetCloud"
                            styleClass="card-title"/>
 
-                    <Label text="Selecciona 'Pacientes' para comenzar."
+                    <Label text="Selecciona 'Pacientes' para comenzar o 'Ayuda' si es tu primera vez."
                            styleClass="card-text"/>
 
                 </VBox>

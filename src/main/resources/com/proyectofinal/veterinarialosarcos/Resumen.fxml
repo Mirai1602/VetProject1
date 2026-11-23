@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.proyectofinal.veterinarialosarcos.controllers.ResumenController"
+      stylesheets="@app.css"
+      styleClass="page"
+      spacing="18"
+      prefWidth="1100"
+      prefHeight="700">
+
+    <Button text="← Atrás"
+            onAction="#regresar"
+            styleClass="back-button"/>
+
+    <VBox spacing="4">
+        <Label text="📊 Resumen de pacientes" styleClass="title"/>
+        <Label text="Pacientes agrupados por especie. Haz doble clic en un paciente o usa «Ver expediente»."
+               styleClass="subtitle"/>
+    </VBox>
+
+    <!-- Tarjetas con totales -->
+    <HBox spacing="16">
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label fx:id="lblTotal" text="0" styleClass="stat-number"/>
+            <Label text="🐾 Pacientes en total" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label fx:id="lblPerros" text="0" styleClass="stat-number"/>
+            <Label text="🐶 Perros" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label fx:id="lblGatos" text="0" styleClass="stat-number"/>
+            <Label text="🐱 Gatos" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <TreeTableView fx:id="tablaResumen" VBox.vgrow="ALWAYS">
+        <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+        <columns>
+            <TreeTableColumn fx:id="colNombre" text="Especie / Nombre" prefWidth="240"/>
+            <TreeTableColumn fx:id="colRaza" text="Raza" prefWidth="140"/>
+            <TreeTableColumn fx:id="colSexo" text="Sexo" prefWidth="90"/>
+            <TreeTableColumn fx:id="colEdad" text="Edad" prefWidth="130"/>
+            <TreeTableColumn fx:id="colOwner" text="Propietario" prefWidth="170"/>
+            <TreeTableColumn fx:id="colExpediente" text="Expediente" prefWidth="170"/>
+        </columns>
+    </TreeTableView>
+
+    <HBox alignment="CENTER_RIGHT">
+        <Button fx:id="btnVerExpediente"
+                text="📋 Ver expediente"
+                onAction="#verExpediente"
+                styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

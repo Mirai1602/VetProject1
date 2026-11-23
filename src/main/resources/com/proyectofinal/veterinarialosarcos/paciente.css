@@ -47,3 +47,15 @@
 
     -fx-padding: 20;
 }
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2d3436;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.back-button:hover {
+    -fx-underline: true;
+}

@@ -61,32 +61,29 @@ public class RegistroController {
             return;
         }
 
-        // TODO: guardar el usuario en la base de datos.
-        UsuarioRepository repository =
-                new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
-        UsuarioService Service =
-                new UsuarioService(repository);
+        UsuarioRepository repository = new UsuarioRepository(JpaUtil.getEntityManagerFactory());
+        String correo = txtCorreo.getText().trim();
 
-        boolean acceso = Service.autenticarUsuario(
-        txtUsuario.getText().trim(), txtPassword.getText());
-        UsuarioService service = new UsuarioService(repository);
-        service.ResgiatrarUsuario(
-                txtUsuario.getText(),
-                txtCorreo.getText(),
-                txtPassword.getText()
-
-        );
-
-        //Si es diferente a la accion de acceso envia el mensaje
-        if(!acceso){
-            Validacion.error(
-                    lblMensaje,
-                    txtPassword,
-                    "Usuario o contraseña incorrecta"
-            );
+        try {
+            if (repository.buscarPorNombreUsuario(txtUsuario.getText().trim()) != null) {
+                Validacion.error(lblMensaje, txtUsuario, "Ese nombre de usuario ya está en uso.");
+                return;
+            }
+            if (repository.buscarPorEmail(correo) != null) {
+                Validacion.error(lblMensaje, txtCorreo, "Ya existe una cuenta con ese correo.");
+                return;
+            }
+            new UsuarioService(repository).ResgiatrarUsuario(
+                    txtUsuario.getText().trim(),
+                    correo,
+                    txtPassword.getText());
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
+            Validacion.error(lblMensaje, txtUsuario,
+                    "No se pudo crear la cuenta. Verifica la conexión con la base de datos.");
             return;
-
         }
+
         Validacion.exito(lblMensaje, "¡Cuenta creada! Ya puedes iniciar sesión.");
     }
 

@@ -6,6 +6,8 @@
     <persistence-unit name="veterinariaPU">
 
         <class>com.proyectofinal.veterinarialosarcos.models.Usuario</class>
+        <class>com.proyectofinal.veterinarialosarcos.models.Paciente</class>
+        <class>com.proyectofinal.veterinarialosarcos.models.Propietario</class>
 
         <properties>
 
@@ -30,8 +32,14 @@
             <property name="hibernate.format_sql"
                       value="true"/>
 
+            <!-- Crea/actualiza tablas y columnas automáticamente en cada arranque -->
             <property name="hibernate.hbm2ddl.auto"
                       value="update"/>
+
+            <!-- Si Hibernate no puede aplicar un cambio de estructura, la app avisa al
+                 arrancar en lugar de fallar después con un error raro al guardar -->
+            <property name="hibernate.hbm2ddl.halt_on_error"
+                      value="true"/>
 
         </properties>
 

@@ -3,6 +3,7 @@ module com.proyectofinal.veterinarialosarcos {
     requires javafx.fxml;
     requires com.jfoenix;
 
+    requires java.sql;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.proyectofinal.veterinarialosarcos.controllers.CambiarContrasenaController"
+      stylesheets="@app.css"
+      styleClass="page"
+      spacing="14"
+      prefWidth="420">
+
+    <Label text="🔒 Cambiar contraseña" styleClass="title"/>
+
+    <!-- Paso 1: verificar la contraseña actual -->
+    <VBox fx:id="pasoVerificar" spacing="10">
+        <Label text="Por seguridad, primero escribe tu contraseña actual."
+               wrapText="true" styleClass="subtitle"/>
+        <Label text="CONTRASEÑA ACTUAL" styleClass="field-label"/>
+        <PasswordField fx:id="txtActual" promptText="Contraseña actual"/>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Cancelar" onAction="#cancelar" cancelButton="true" styleClass="secondary-button"/>
+            <Button text="Verificar" onAction="#verificar" defaultButton="true" styleClass="primary-button"/>
+        </HBox>
+    </VBox>
+
+    <!-- Paso 2: escribir la nueva (solo aparece si la actual fue correcta) -->
+    <VBox fx:id="pasoNueva" spacing="10" visible="false" managed="false" disable="true">
+        <Label text="✔ Contraseña verificada. Ahora escribe la nueva."
+               wrapText="true" styleClass="mensaje-exito"/>
+        <Label text="NUEVA CONTRASEÑA" styleClass="field-label"/>
+        <PasswordField fx:id="txtNueva" promptText="Mínimo 6 caracteres"/>
+        <Label text="CONFIRMAR NUEVA CONTRASEÑA" styleClass="field-label"/>
+        <PasswordField fx:id="txtConfirmar" promptText="Repite la nueva contraseña"/>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Cancelar" onAction="#cancelar" styleClass="secondary-button"/>
+            <Button text="Guardar contraseña" onAction="#guardar" defaultButton="true" styleClass="primary-button"/>
+        </HBox>
+    </VBox>
+
+    <Label fx:id="lblMensaje" wrapText="true" visible="false" managed="false"/>
+
+</VBox>

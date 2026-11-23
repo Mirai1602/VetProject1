@@ -1,6 +1,9 @@
 package com.proyectofinal.veterinarialosarcos.controllers;
 
+import com.proyectofinal.veterinarialosarcos.models.Usuario;
 import com.proyectofinal.veterinarialosarcos.repositories.UsuarioRepository;
+import com.proyectofinal.veterinarialosarcos.utils.Sesion;
+import com.proyectofinal.veterinarialosarcos.services.UsuarioService;
 import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,10 +38,25 @@ public class LoginController {
             return;
         }
 
-        //UsuarioRepository repository =
-                //new UsuarioRepository(JpaUtil.getEntityManager().getEntityManagerFactory());
-        //Validacion.exito(lblMensaje, "¡Bienvenido, " + txtUsuario.getText().trim() + "!");
+        Usuario usuario;
+        try {
+            UsuarioService service =
+                    new UsuarioService(new UsuarioRepository(JpaUtil.getEntityManagerFactory()));
+            usuario = service.autenticarUsuario(txtUsuario.getText().trim(), txtPassword.getText());
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
+            Validacion.error(lblMensaje, txtUsuario,
+                    "No se pudo conectar con la base de datos.");
+            return;
+        }
 
+        if (usuario == null) {
+            txtPassword.clear();
+            Validacion.error(lblMensaje, txtPassword, "Usuario o contraseña incorrectos.");
+            return;
+        }
+
+        Sesion.iniciar(usuario);
         Navegacion.irA(event, "Dashboard.fxml");
     }
 

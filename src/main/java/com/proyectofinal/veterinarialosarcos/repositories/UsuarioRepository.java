@@ -33,12 +33,47 @@ public class UsuarioRepository {
         }
     }
 
+    //Guarda los cambios de un usuario existente (perfil, foto, contraseña...)
+    public Usuario actualizar(Usuario usuario) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Usuario actualizado = em.merge(usuario);
+            em.getTransaction().commit();
+            return actualizado;
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
+        } finally {
+            em.close();
+        }
+    }
+
+    //Busca al usuario por su nombre de usuario (guardado en la columna "negocio")
+    public Usuario buscarPorNombreUsuario(String nombreUsuario) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery(
+                    "SELECT u FROM Usuario u WHERE u.nombreNegocio = :nombre",
+                    Usuario.class)
+                    .setParameter("nombre", nombreUsuario)
+                    .setMaxResults(1)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+        } finally {
+            em.close();
+        }
+    }
+
    //Integracion del metodo que permitira iniciar sesion
     public Usuario buscarPorEmail(String email) {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createQuery(
-                    "SELECT u from Usuario u where u.email = u.email",
+                    "SELECT u from Usuario u where u.email = :email",
                     Usuario.class)
                     .setParameter("email", email)
                     .getSingleResult();

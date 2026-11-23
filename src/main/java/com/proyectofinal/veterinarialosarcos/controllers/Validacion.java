@@ -33,12 +33,14 @@ final class Validacion {
         mensaje.setManaged(false);
     }
 
-    /** Marca el campo en rojo, le da el foco y muestra el error. */
+    /** Marca el campo en rojo (si se indica), le da el foco y muestra el error. */
     static void error(Label mensaje, TextInputControl campo, String texto) {
-        if (!campo.getStyleClass().contains("input-error")) {
-            campo.getStyleClass().add("input-error");
+        if (campo != null) {
+            if (!campo.getStyleClass().contains("input-error")) {
+                campo.getStyleClass().add("input-error");
+            }
+            campo.requestFocus();
         }
-        campo.requestFocus();
         mostrar(mensaje, texto, "mensaje-error");
     }
 

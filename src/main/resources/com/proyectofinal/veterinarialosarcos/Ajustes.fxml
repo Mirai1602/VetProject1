@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.proyectofinal.veterinarialosarcos.controllers.AjustesController"
+            stylesheets="@app.css"
+            styleClass="scroll-page"
+            fitToWidth="true"
+            prefWidth="1100"
+            prefHeight="700">
+
+    <VBox styleClass="page" spacing="18">
+
+        <Button text="← Atrás"
+                onAction="#regresar"
+                styleClass="back-button"/>
+
+        <Label text="⚙ Ajustes de la cuenta" styleClass="title"/>
+
+        <!-- Tarjeta de perfil estilo red social -->
+        <VBox styleClass="profile-card">
+            <Region styleClass="profile-banner"/>
+
+            <HBox spacing="20" alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="14" left="28" right="28" bottom="20"/>
+                </padding>
+
+                <StackPane styleClass="avatar-ring"
+                           minWidth="128" minHeight="128" maxWidth="128" maxHeight="128">
+                    <HBox.margin>
+                        <Insets top="-70" bottom="-58"/>
+                    </HBox.margin>
+                    <StackPane styleClass="avatar-fallback"
+                               minWidth="120" minHeight="120" maxWidth="120" maxHeight="120">
+                        <Label fx:id="lblInicial" text="V" styleClass="avatar-initial"/>
+                    </StackPane>
+                    <ImageView fx:id="imgPerfil" fitWidth="120" fitHeight="120"/>
+                </StackPane>
+
+                <VBox spacing="3" HBox.hgrow="ALWAYS">
+                    <Label fx:id="lblNombreVisible" text="Usuario" styleClass="profile-name"/>
+                    <Label fx:id="lblArroba" text="@usuario" styleClass="profile-handle"/>
+                    <HBox spacing="18">
+                        <Label fx:id="lblCorreo" styleClass="profile-meta"/>
+                        <Label fx:id="lblMiembroDesde" styleClass="profile-meta"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="6" alignment="TOP_RIGHT">
+                    <Button text="📷 Cambiar foto"
+                            onAction="#cambiarFoto"
+                            styleClass="primary-button"/>
+                    <Button text="Quitar foto"
+                            onAction="#quitarFoto"
+                            styleClass="danger-link"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <Label fx:id="lblMensaje" wrapText="true" visible="false" managed="false"/>
+
+        <HBox spacing="18">
+
+            <!-- Cuenta -->
+            <VBox styleClass="card" spacing="10" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="🔑 Cuenta" styleClass="card-title"/>
+
+                <Label text="NOMBRE DE USUARIO" styleClass="field-label"/>
+                <TextField fx:id="txtUsuario" promptText="Nombre de usuario"/>
+                <Label text="Es el nombre con el que inicias sesión (mínimo 3 caracteres, sin espacios)."
+                       wrapText="true" styleClass="hint"/>
+
+                <Separator>
+                    <VBox.margin>
+                        <Insets top="8" bottom="4"/>
+                    </VBox.margin>
+                </Separator>
+
+                <Label text="🔒 Seguridad" styleClass="card-title"/>
+                <Label text="Tu contraseña se guarda cifrada. Para cambiarla primero deberás confirmar la actual."
+                       wrapText="true" styleClass="hint"/>
+                <Button text="Cambiar contraseña"
+                        onAction="#cambiarContrasena"
+                        styleClass="secondary-button"/>
+            </VBox>
+
+            <!-- Datos personales -->
+            <VBox styleClass="card" spacing="10" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="👤 Datos personales" styleClass="card-title"/>
+
+                <HBox spacing="12">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="NOMBRE" styleClass="field-label"/>
+                        <TextField fx:id="txtNombre" promptText="Nombre"/>
+                    </VBox>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="APELLIDO" styleClass="field-label"/>
+                        <TextField fx:id="txtApellido" promptText="Apellido"/>
+                    </VBox>
+                </HBox>
+
+                <Label text="FECHA DE NACIMIENTO" styleClass="field-label"/>
+                <HBox spacing="14" alignment="CENTER_LEFT">
+                    <DatePicker fx:id="dpFechaNacimiento" promptText="dd/mm/aaaa" editable="false"/>
+                    <Label fx:id="lblEdad" text="Edad: —" styleClass="profile-handle"/>
+                </HBox>
+                <Label text="Debes ser mayor de 15 años." styleClass="hint"/>
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER_RIGHT">
+            <Button text="💾 Guardar cambios"
+                    onAction="#guardarCambios"
+                    defaultButton="true"
+                    styleClass="primary-button"/>
+        </HBox>
+
+    </VBox>
+
+</ScrollPane>
