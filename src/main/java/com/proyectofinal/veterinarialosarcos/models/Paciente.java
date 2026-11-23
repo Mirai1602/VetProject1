@@ -61,9 +61,9 @@ public class Paciente {
     // Boolean (no boolean) para que la columna admita null y Hibernate pueda
     // agregarla aunque la tabla ya tenga filas.
     private Boolean fechaNacimientoConocida;
-    private Boolean genero;
 
-    public Paciente(Long id, String numPaciente, String numExpediente, String nombre, String raza, Especie especie, LocalDate fechaNac,Integer Edad, boolean genero, Propietario propietario) {
+
+    public Paciente(Long id, String numPaciente, String numExpediente, String nombre, String raza, Especie especie, LocalDate fechaNac,Integer Edad,  Propietario propietario) {
         this.id = id;
         this.numPaciente = numPaciente;
         this.numExpediente = numExpediente;
@@ -72,7 +72,7 @@ public class Paciente {
         this.especie = especie;
         FechaNac = fechaNac;
         this.edad = Edad;
-        this.genero = genero;
+        //Se elemina lo de boolean genero porque ya estaba dos veces
         this.propietario = propietario;
     }
 
@@ -88,13 +88,8 @@ public class Paciente {
         this.propietario = propietario;
     }
 
-    public boolean isGenero() {
-        return Boolean.TRUE.equals(genero);
-    }
 
-    public void setGenero(boolean genero) {
-        this.genero = genero;
-    }
+    //Acá se eliminaron dos cosas que hacían referencia a boolean Sexo
 
     public LocalDate getFechaNac() {
         return FechaNac;

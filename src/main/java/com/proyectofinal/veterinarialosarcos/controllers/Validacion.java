@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 /**
  * Utilidades compartidas para validar formularios y mostrar mensajes al usuario.
  */
+
 final class Validacion {
 
     private static final Pattern CORREO =
