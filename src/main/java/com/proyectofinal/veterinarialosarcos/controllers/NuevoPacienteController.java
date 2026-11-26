@@ -117,7 +117,7 @@ public class NuevoPacienteController {
         paciente.setNombre(txtNombrePaciente.getText().trim());
         paciente.setEspecie(cmbEspecie.getValue());
         paciente.setSexo(obtenerSexo());
-        paciente.setGenero(obtenerSexo() == Sexo.MACHO);
+
         paciente.setRaza(txtRaza.getText().trim());
         paciente.setFechaNacimientoConocida(!chkFechaDesconocida.isSelected());
         if (chkFechaDesconocida.isSelected()) {

@@ -5,7 +5,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
-public class Expedientes {
+public class Expediente {
     //Id de identificicacion para el expediente
     //No se usa UUID por preferiencia, para que este no sea tan largo
     @Id
@@ -15,5 +15,5 @@ public class Expedientes {
     @OneToOne
     private Paciente paciente;
 
-    private String observaciones;
+
 }

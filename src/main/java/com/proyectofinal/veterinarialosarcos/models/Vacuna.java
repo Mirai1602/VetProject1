@@ -3,22 +3,24 @@ package com.proyectofinal.veterinarialosarcos.models;
 import com.proyectofinal.veterinarialosarcos.enumerados.Especie;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 //Crea la entiendad objeto de vacuna, con los diferente tipos de vacunas que puedan existir
 @Entity
 @Table(name = "Vacunas")
 public class Vacuna {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre;
+    @ManyToOne
+    private Consulta consulta;
 
-    @Enumerated(EnumType.STRING)
-    private Especie especie;
+    @ManyToOne
+    private Vacuna vacuna;
 
-    private Integer edadMinimaMeses;
-    //Si la vacuna es anual, como la rabia
-    private boolean anual;
+    private LocalDate fechaAplicacion;
     public Vacuna() {
     }
 
