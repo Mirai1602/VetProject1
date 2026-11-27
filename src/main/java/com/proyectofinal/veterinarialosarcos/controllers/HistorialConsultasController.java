@@ -4,18 +4,25 @@ import com.proyectofinal.veterinarialosarcos.models.Consulta;
 import com.proyectofinal.veterinarialosarcos.models.Paciente;
 import com.proyectofinal.veterinarialosarcos.repositories.ConsultaRepository;
 import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
+import com.proyectofinal.veterinarialosarcos.utils.ReporteService;
 import com.proyectofinal.veterinarialosarcos.utils.Sesion;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.function.Function;
 
 /** Expediente del paciente: sus datos permanentes y el listado de todas sus consultas. */
@@ -55,6 +62,8 @@ public class HistorialConsultasController {
     private TableColumn<Consulta, String> colPeso;
     @FXML
     private Button btnVerConsulta;
+    @FXML
+    private Button btnExportarPdf;
 
     private Paciente paciente;
 
@@ -111,6 +120,57 @@ public class HistorialConsultasController {
     private void nuevaConsulta(ActionEvent event) {
         Navegacion.abrirNuevaConsulta((Node) event.getSource(), paciente);
         cargarConsultas();
+    }
+
+    /** Genera el PDF del historial en segundo plano para no congelar la ventana. */
+    @FXML
+    private void exportarPdf(ActionEvent event) {
+        FileChooser selector = new FileChooser();
+        selector.setTitle("Guardar historial en PDF");
+        selector.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+        selector.setInitialFileName("Historial_" + paciente.getNombre().replaceAll("[^\\p{L}\\p{N}]+", "_")
+                + "_" + LocalDate.now() + ".pdf");
+        File destino = selector.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
+        if (destino == null) {
+            return;
+        }
+        if (!destino.getName().toLowerCase().endsWith(".pdf")) {
+            destino = new File(destino.getParentFile(), destino.getName() + ".pdf");
+        }
+
+        File archivo = destino;
+        List<Consulta> consultas = List.copyOf(tablaConsultas.getItems());
+        String negocio = Sesion.getUsuario().getNombreNegocio();
+        Task<Void> tarea = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                ReporteService.exportarHistorialPdf(negocio, paciente, consultas, archivo);
+                return null;
+            }
+        };
+        btnExportarPdf.setDisable(true);
+        btnExportarPdf.setText("Generando…");
+        tarea.setOnSucceeded(e -> {
+            restaurarBotonExportar();
+            Alert ok = new Alert(Alert.AlertType.INFORMATION, "Se guardó el historial en:\n" + archivo.getAbsolutePath());
+            ok.setHeaderText("PDF generado");
+            ok.showAndWait();
+        });
+        tarea.setOnFailed(e -> {
+            restaurarBotonExportar();
+            tarea.getException().printStackTrace();
+            Alert error = new Alert(Alert.AlertType.ERROR, "No se pudo generar el PDF: " + tarea.getException().getMessage());
+            error.setHeaderText("Error al exportar");
+            error.showAndWait();
+        });
+        Thread hilo = new Thread(tarea, "exportar-historial-pdf");
+        hilo.setDaemon(true);
+        hilo.start();
+    }
+
+    private void restaurarBotonExportar() {
+        btnExportarPdf.setDisable(false);
+        btnExportarPdf.setText("📄 Exportar PDF");
     }
 
     @FXML

@@ -53,6 +53,19 @@
             <version>42.7.7</version>
         </dependency>
 
+        <!-- Reportes PDF (plantillas .jrxml editables con Jaspersoft Studio) -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.5</version>
+        </dependency>
+        <!-- Fuente DejaVu Sans incrustada en el PDF (acentos, ñ, °, —) -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.21.5</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
