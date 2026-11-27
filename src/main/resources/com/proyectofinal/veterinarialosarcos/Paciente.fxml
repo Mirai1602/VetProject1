@@ -34,10 +34,10 @@
                 <Button text="📋 Ver expediente"
                         onAction="#verExpediente"
                         styleClass="new-button"/>
-                <Button
-                        text=" Generar Reporte Excel"
-                        onAction="#generarReporteExcel"
-                        styleClass="report-button"/>
+
+                <Button text="✏ Editar propietario"
+                        onAction="#editarPropietario"
+                        styleClass="new-button"/>
 
             </HBox>
 

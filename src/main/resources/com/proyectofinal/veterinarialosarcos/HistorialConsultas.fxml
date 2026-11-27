@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!-- Expediente del paciente: datos permanentes + historial de consultas (nunca se sobrescriben) -->
+<!-- Expediente del paciente: datos permanentes + historial de consultas (nunca se sobrescriben; solo se pueden eliminar) -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.proyectofinal.veterinarialosarcos.controllers.HistorialConsultasController"
-            prefWidth="860"
+            prefWidth="1020"
             prefHeight="640"
             styleClass="main-container"
             stylesheets="@expediente.css">
@@ -57,8 +57,15 @@
                 <Label text="Propietario" styleClass="dato" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
                 <Label fx:id="lblPropietario" text="—" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
 
+                <Label text="Dirección" styleClass="dato" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label fx:id="lblDireccion" text="—" wrapText="true" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
                 <Label text="Teléfono" styleClass="dato" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
                 <Label fx:id="lblTelefono" text="—" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+                <Button text="✏ Editar propietario"
+                        onAction="#editarPropietario"
+                        styleClass="secondary-button"
+                        GridPane.rowIndex="4" GridPane.columnIndex="3"/>
             </GridPane>
 
             <HBox alignment="CENTER_LEFT" spacing="10">
@@ -69,10 +76,18 @@
                         text="📄 Exportar PDF"
                         onAction="#exportarPdf"
                         styleClass="secondary-button"/>
+                <Button fx:id="btnExportarExcel"
+                        text="📊 Exportar Excel"
+                        onAction="#exportarExcel"
+                        styleClass="secondary-button"/>
                 <Button fx:id="btnVerConsulta"
                         text="Ver consulta"
                         onAction="#verConsulta"
                         styleClass="secondary-button"/>
+                <Button fx:id="btnEliminarConsulta"
+                        text="🗑 Eliminar"
+                        onAction="#eliminarConsulta"
+                        styleClass="danger-button"/>
                 <Button text="＋ Nueva consulta"
                         onAction="#nuevaConsulta"
                         styleClass="primary-button"/>

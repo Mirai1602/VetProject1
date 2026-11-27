@@ -86,3 +86,15 @@
 
     -fx-background-color: #cfd8dc;
 }
+/* Teléfono: casilla pequeña para el código de país + número */
+.combo-box.codigo-telefono {
+
+    -fx-pref-width: 82px;
+
+    -fx-min-width: 82px;
+}
+
+.text-field.numero-telefono {
+
+    -fx-pref-width: 162px;
+}

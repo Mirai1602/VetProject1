@@ -167,17 +167,35 @@ public class ConsultaController {
     /** Muestra una consulta ya registrada, sin permitir cambios. */
     void verConsulta(Paciente paciente, Long consultaId) {
         mostrarPaciente(paciente);
-        Consulta consulta;
+        Consulta consulta = cargar(consultaId);
+        if (consulta == null) {
+            return;
+        }
+        lblTitulo.setText("Consulta del " + consulta.getFecha().format(HistorialConsultasController.FECHA));
+        llenar(consulta);
+
+        // Solo lectura: una consulta registrada no se modifica.
+        formulario.setDisable(true);
+        formulario.getStyleClass().add("solo-lectura");
+        ocultar(boxAgregarVacuna);
+        ocultar(btnQuitarVacuna);
+        ocultar(btnGuardar);
+    }
+
+    private Consulta cargar(Long consultaId) {
         try {
-            consulta = new ConsultaRepository(JpaUtil.getEntityManagerFactory())
+            return new ConsultaRepository(JpaUtil.getEntityManagerFactory())
                     .buscar(consultaId, Sesion.getUsuario().getId());
         } catch (RuntimeException ex) {
             ex.printStackTrace();
             Navegacion.alerta(Alert.AlertType.ERROR, "Error",
                     "No se pudo cargar la consulta: " + ex.getMessage());
-            return;
+            return null;
         }
-        lblTitulo.setText("Consulta del " + consulta.getFecha().format(HistorialConsultasController.FECHA));
+    }
+
+    /** Pasa los datos de la consulta a los campos de la ficha. */
+    private void llenar(Consulta consulta) {
         dpFecha.setValue(consulta.getFecha());
         txtMotivo.setText(consulta.getMotivoConsulta());
         for (int i = 0; i < EXAMEN.size(); i++) {
@@ -193,13 +211,6 @@ public class ConsultaController {
         txtDieta.setText(consulta.getDieta());
         txtComentarios.setText(consulta.getComentarios());
         tablaVacunas.getItems().setAll(consulta.getVacunas());
-
-        // Solo lectura: una consulta registrada no se modifica.
-        formulario.setDisable(true);
-        formulario.getStyleClass().add("solo-lectura");
-        ocultar(boxAgregarVacuna);
-        ocultar(btnQuitarVacuna);
-        ocultar(btnGuardar);
     }
 
     private void mostrarPaciente(Paciente paciente) {

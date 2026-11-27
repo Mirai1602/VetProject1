@@ -75,6 +75,17 @@ final class Navegacion {
                 "Consulta · " + paciente.getNombre(), c -> c.verConsulta(paciente, consultaId));
     }
 
+    /** Abre la ventana para editar al propietario. Devuelve true si se guardaron cambios. */
+    static boolean abrirEditarPropietario(Node origen, Paciente paciente) {
+        EditarPropietarioController[] controlador = new EditarPropietarioController[1];
+        Navegacion.<EditarPropietarioController>abrirModal(origen, "EditarPropietario.fxml",
+                "Editar propietario · " + paciente.getNombre(), c -> {
+                    controlador[0] = c;
+                    c.setPaciente(paciente);
+                });
+        return controlador[0] != null && controlador[0].isGuardado();
+    }
+
     static void cerrarVentana(ActionEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }

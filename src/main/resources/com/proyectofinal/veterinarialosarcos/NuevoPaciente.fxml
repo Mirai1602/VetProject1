@@ -78,8 +78,13 @@
             <TextField fx:id="txtDireccion"
                        promptText="Dirección"/>
 
-            <TextField fx:id="txtTelefono"
-                       promptText="Teléfono"/>
+            <HBox spacing="6">
+                <ComboBox fx:id="cmbCodigoTelefono"
+                          styleClass="codigo-telefono"/>
+                <TextField fx:id="txtTelefono"
+                           promptText="Teléfono"
+                           styleClass="numero-telefono"/>
+            </HBox>
 
         </VBox>
 

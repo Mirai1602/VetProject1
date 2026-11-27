@@ -39,6 +39,8 @@ public class NuevoPacienteController {
     @FXML
     private TextField txtDireccion;
     @FXML
+    private ComboBox<Telefono.Pais> cmbCodigoTelefono;
+    @FXML
     private TextField txtTelefono;
 
     private final ToggleGroup sexoGroup = new ToggleGroup();
@@ -47,6 +49,9 @@ public class NuevoPacienteController {
     private void initialize() {
         rbMacho.setToggleGroup(sexoGroup);
         rbHembra.setToggleGroup(sexoGroup);
+
+        // Teléfono: código de país (+505 por defecto) y solo dígitos.
+        Telefono.configurar(cmbCodigoTelefono, txtTelefono);
 
         // Solo se permiten las especies del enum: Perro o Gato.
         cmbEspecie.getItems().setAll(Especie.values());
@@ -111,7 +116,7 @@ public class NuevoPacienteController {
         Propietario propietario = new Propietario();
         propietario.setNombreOwner(txtNombreOwner.getText().trim());
         propietario.setDireccion(txtDireccion.getText().trim());
-        propietario.setTelefono(txtTelefono.getText().trim());
+        propietario.setTelefono(Telefono.valor(cmbCodigoTelefono, txtTelefono));
 
         Paciente paciente = new Paciente();
         paciente.setNombre(txtNombrePaciente.getText().trim());
@@ -165,7 +170,7 @@ public class NuevoPacienteController {
         if (Validacion.estaVacio(txtNombreOwner)) {
             return "Ingresa el nombre del propietario.";
         }
-        return null;
+        return Telefono.validar(cmbCodigoTelefono, txtTelefono);
     }
 
     @FXML

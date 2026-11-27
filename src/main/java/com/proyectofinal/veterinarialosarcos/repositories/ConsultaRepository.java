@@ -9,10 +9,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Consultas (visitas) de los pacientes. Solo se crean consultas nuevas: una consulta
  * guardada nunca se modifica, para que el historial clínico no se pierda.
+ * Lo único permitido sobre una consulta registrada es eliminarla.
  */
 public class ConsultaRepository {
 
@@ -78,6 +80,39 @@ public class ConsultaRepository {
                 aplicada.setVacuna(em.getReference(Vacuna.class, aplicada.getVacuna().getId()));
             }
             em.persist(consulta);
+            em.getTransaction().commit();
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
+        } finally {
+            em.close();
+        }
+    }
+
+    /** Elimina la consulta y sus vacunas aplicadas. */
+    public void eliminar(Long consultaId, int usuarioId) {
+        enTransaccion(em -> em.remove(consultaDelUsuario(em, consultaId, usuarioId)));
+    }
+
+    private static Consulta consultaDelUsuario(EntityManager em, Long consultaId, int usuarioId) {
+        Consulta consulta = em.find(Consulta.class, consultaId);
+        if (consulta == null) {
+            throw new IllegalStateException("La consulta ya no existe.");
+        }
+        Paciente paciente = consulta.getPaciente();
+        if (paciente.getUsuario() == null || paciente.getUsuario().getId() != usuarioId) {
+            throw new IllegalStateException("Esta consulta no pertenece a tu cuenta.");
+        }
+        return consulta;
+    }
+
+    private void enTransaccion(Consumer<EntityManager> trabajo) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            trabajo.accept(em);
             em.getTransaction().commit();
         } catch (RuntimeException ex) {
             if (em.getTransaction().isActive()) {

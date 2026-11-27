@@ -47,26 +47,6 @@
 
     -fx-padding: 20;
 }
-.report-button {
-
-    -fx-background-color: #0984e3;
-
-    -fx-text-fill: white;
-
-    -fx-font-weight: bold;
-
-    -fx-background-radius: 8;
-
-    -fx-cursor: hand;
-
-    -fx-padding: 10 15 10 15;
-}
-
-.report-button:hover {
-
-    -fx-background-color: #0767b1;
-}
-
 .back-button {
     -fx-background-color: transparent;
     -fx-text-fill: #2d3436;

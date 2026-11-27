@@ -105,6 +105,10 @@
                     <Label text="4" styleClass="step-number"/>
                     <Label text="Pulsa «Guardar consulta». Cada visita se agrega al expediente y nunca reemplaza a las anteriores." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
                 </HBox>
+                <HBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="5" styleClass="step-number"/>
+                    <Label text="Para exportar una consulta, selecciónala en la tabla: se activarán «📄 Exportar PDF» y «📊 Exportar Excel». Elige dónde guardar el archivo y se generará con los datos del paciente y de esa consulta." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                </HBox>
             </VBox>
             <VBox styleClass="card" spacing="12" prefWidth="490">
                 <HBox spacing="12" alignment="CENTER_LEFT">
@@ -168,6 +172,7 @@
             <Label text="• Tu contraseña se guarda cifrada: nadie puede leerla, ni siquiera desde la base de datos." wrapText="true" styleClass="step-text"/>
             <Label text="• Si cambias tu nombre de usuario, recuerda usar el nuevo la próxima vez que inicies sesión." wrapText="true" styleClass="step-text"/>
             <Label text="• Guarda el expediente cada vez que hagas cambios; al cerrarlo sin guardar se pierden." wrapText="true" styleClass="step-text"/>
+            <Label text="• Los botones de exportar aparecen desactivados hasta que seleccionas una consulta del historial." wrapText="true" styleClass="step-text"/>
             <Label text="• En casi todas las pantallas encontrarás el botón «← Atrás» para volver al menú principal." wrapText="true" styleClass="step-text"/>
         </VBox>
 

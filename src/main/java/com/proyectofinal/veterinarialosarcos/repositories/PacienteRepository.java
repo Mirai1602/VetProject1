@@ -41,6 +41,24 @@ public class PacienteRepository {
         });
     }
 
+    /**
+     * Actualiza los datos del propietario del paciente (solo si el paciente es del usuario).
+     * Si el propietario tiene varias mascotas, el cambio se ve en todas.
+     */
+    public void actualizarPropietario(Long pacienteId, String nombre, String direccion,
+                                      String telefono, int usuarioId) {
+        enTransaccion(em -> {
+            Paciente paciente = ConsultaRepository.pacienteDelUsuario(em, pacienteId, usuarioId);
+            Propietario propietario = paciente.getOwner();
+            if (propietario == null) {
+                throw new IllegalStateException("Este paciente no tiene propietario registrado.");
+            }
+            propietario.setNombreOwner(nombre);
+            propietario.setDireccion(direccion);
+            propietario.setTelefono(telefono);
+        });
+    }
+
     private void enTransaccion(Consumer<EntityManager> trabajo) {
         EntityManager em = emf.createEntityManager();
         try {

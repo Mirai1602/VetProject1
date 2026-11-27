@@ -156,3 +156,18 @@
 .solo-lectura .table-view:disabled {
     -fx-opacity: 1;
 }
+
+/* Botón para eliminar una consulta */
+.danger-button {
+    -fx-background-color: white;
+    -fx-text-fill: #d63031;
+    -fx-border-color: #d63031;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: #ffeaea;
+}

@@ -3,12 +3,17 @@ package com.proyectofinal.veterinarialosarcos.utils;
 import com.proyectofinal.veterinarialosarcos.models.Consulta;
 import com.proyectofinal.veterinarialosarcos.models.Paciente;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Genera reportes PDF con JasperReports.
+ * Genera reportes PDF y Excel (.xlsx) con JasperReports.
  *
  * <p>Las plantillas (.jrxml) están en {@code resources/.../reportes/} y se pueden editar
  * con Jaspersoft Studio. Los datos se pasan como mapas de texto ya formateado, así la
@@ -42,6 +47,36 @@ public final class ReporteService {
     /** Exporta el historial de consultas del paciente a un archivo PDF. */
     public static void exportarHistorialPdf(String negocio, Paciente paciente, List<Consulta> consultas, File destino)
             throws JRException {
+        JasperPrint impreso = llenarHistorial(negocio, paciente, consultas, false);
+        JasperExportManager.exportReportToPdfFile(impreso, destino.getAbsolutePath());
+    }
+
+    /**
+     * Exporta el historial de consultas a Excel (.xlsx) con la misma plantilla del PDF.
+     * Se ignora la paginación para que todas las consultas queden en una sola hoja.
+     */
+    public static void exportarHistorialExcel(String negocio, Paciente paciente, List<Consulta> consultas, File destino)
+            throws JRException {
+        JasperPrint impreso = llenarHistorial(negocio, paciente, consultas, true);
+
+        SimpleXlsxReportConfiguration config = new SimpleXlsxReportConfiguration();
+        config.setOnePagePerSheet(false);
+        config.setDetectCellType(true);
+        config.setRemoveEmptySpaceBetweenRows(true);
+        config.setRemoveEmptySpaceBetweenColumns(true);
+        config.setWhitePageBackground(false);
+        config.setCollapseRowSpan(false);
+        config.setSheetNames(new String[]{"Expediente"});
+
+        JRXlsxExporter exportador = new JRXlsxExporter();
+        exportador.setExporterInput(new SimpleExporterInput(impreso));
+        exportador.setExporterOutput(new SimpleOutputStreamExporterOutput(destino));
+        exportador.setConfiguration(config);
+        exportador.exportReport();
+    }
+
+    private static JasperPrint llenarHistorial(String negocio, Paciente paciente, List<Consulta> consultas,
+                                               boolean sinPaginacion) throws JRException {
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("NEGOCIO", texto(negocio));
         parametros.put("NUM_EXPEDIENTE", texto(paciente.getNumExpediente()));
@@ -65,8 +100,8 @@ public final class ReporteService {
             filas.add(fila);
         }
 
-        JasperPrint impreso = JasperFillManager.fillReport(historial(), parametros, new JRMapCollectionDataSource(filas));
-        JasperExportManager.exportReportToPdfFile(impreso, destino.getAbsolutePath());
+        parametros.put(JRParameter.IS_IGNORE_PAGINATION, sinPaginacion);
+        return JasperFillManager.fillReport(historial(), parametros, new JRMapCollectionDataSource(filas));
     }
 
     private static synchronized JasperReport historial() throws JRException {
