@@ -1,5 +1,6 @@
 package com.proyectofinal.veterinarialosarcos.repositories;
 
+import com.proyectofinal.veterinarialosarcos.models.Expediente;
 import com.proyectofinal.veterinarialosarcos.models.Paciente;
 import com.proyectofinal.veterinarialosarcos.models.Propietario;
 import jakarta.persistence.EntityManager;
@@ -31,25 +32,12 @@ public class PacienteRepository {
         }
     }
 
+    /** Guarda el paciente, su propietario y su expediente clínico (vacío) en una sola transacción. */
     public void guardar(Paciente paciente, Propietario propietario) {
         enTransaccion(em -> {
             em.persist(propietario);
             em.persist(paciente);
-        });
-    }
-
-    /** Guarda los textos del expediente clínico, solo si el paciente pertenece al usuario. */
-    public void actualizarExpediente(Paciente datos, int usuarioId) {
-        enTransaccion(em -> {
-            Paciente paciente = em.find(Paciente.class, datos.getId());
-            if (paciente == null || paciente.getUsuario() == null
-                    || paciente.getUsuario().getId() != usuarioId) {
-                throw new IllegalStateException("Este paciente no pertenece a tu cuenta.");
-            }
-            paciente.setHistorialVacunas(datos.getHistorialVacunas());
-            paciente.setHistorialDesparasitacion(datos.getHistorialDesparasitacion());
-            paciente.setControlParasitos(datos.getControlParasitos());
-            paciente.setObservaciones(datos.getObservaciones());
+            em.persist(new Expediente(paciente));
         });
     }
 

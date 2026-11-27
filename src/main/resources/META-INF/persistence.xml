@@ -8,6 +8,8 @@
         <class>com.proyectofinal.veterinarialosarcos.models.Usuario</class>
         <class>com.proyectofinal.veterinarialosarcos.models.Paciente</class>
         <class>com.proyectofinal.veterinarialosarcos.models.Propietario</class>
+        <class>com.proyectofinal.veterinarialosarcos.models.Expediente</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
 

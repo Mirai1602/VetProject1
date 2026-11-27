@@ -12,10 +12,7 @@ public class JpaUtil {
     //Al crearse, la base de datos se actualiza sola:
     // 1) migraciones SQL pendientes (V*.sql), 2) Hibernate crea tablas/columnas nuevas,
     // 3) scripts repetibles (R*.sql). Ver MigracionesBD.
-    //private static final EntityManagerFactory emf = crear();
-
-    private static EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("veterinariaPU");
+    private static final EntityManagerFactory emf = crear();
 
     private static EntityManagerFactory crear() {
         MigracionesBD.aplicarVersionadas(UNIDAD);

@@ -1,7 +1,8 @@
 package com.proyectofinal.veterinarialosarcos.controllers;
 
+import com.proyectofinal.veterinarialosarcos.models.Expediente;
 import com.proyectofinal.veterinarialosarcos.models.Paciente;
-import com.proyectofinal.veterinarialosarcos.repositories.PacienteRepository;
+import com.proyectofinal.veterinarialosarcos.repositories.ExpedienteRepository;
 import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
 import com.proyectofinal.veterinarialosarcos.utils.Sesion;
 import javafx.event.ActionEvent;
@@ -54,20 +55,30 @@ public class ExpedienteController {
             lblPropietario.setText(texto(paciente.getOwner().getNombreOwner()));
             lblTelefono.setText(texto(paciente.getOwner().getTelefono()));
         }
-        txtVacunas.setText(paciente.getHistorialVacunas());
-        txtDesparasitacion.setText(paciente.getHistorialDesparasitacion());
-        txtParasitos.setText(paciente.getControlParasitos());
-        txtObservaciones.setText(paciente.getObservaciones());
+        Expediente expediente;
+        try {
+            expediente = repositorio().obtenerPorPaciente(paciente.getId(), Sesion.getUsuario().getId());
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
+            Navegacion.alerta(Alert.AlertType.ERROR, "Error",
+                    "No se pudo cargar el expediente: " + ex.getMessage());
+            return;
+        }
+        txtVacunas.setText(expediente.getHistorialVacunas());
+        txtDesparasitacion.setText(expediente.getHistorialDesparasitacion());
+        txtParasitos.setText(expediente.getControlParasitos());
+        txtObservaciones.setText(expediente.getObservaciones());
     }
 
     @FXML
     private void guardar(ActionEvent event) {
-        paciente.setHistorialVacunas(txtVacunas.getText());
-        paciente.setHistorialDesparasitacion(txtDesparasitacion.getText());
-        paciente.setControlParasitos(txtParasitos.getText());
-        paciente.setObservaciones(txtObservaciones.getText());
+        Expediente datos = new Expediente();
+        datos.setHistorialVacunas(txtVacunas.getText());
+        datos.setHistorialDesparasitacion(txtDesparasitacion.getText());
+        datos.setControlParasitos(txtParasitos.getText());
+        datos.setObservaciones(txtObservaciones.getText());
         try {
-            new PacienteRepository(JpaUtil.getEntityManagerFactory()).actualizarExpediente(paciente, Sesion.getUsuario().getId());
+            repositorio().guardar(paciente.getId(), datos, Sesion.getUsuario().getId());
         } catch (RuntimeException ex) {
             ex.printStackTrace();
             Navegacion.alerta(Alert.AlertType.ERROR, "Error",
@@ -81,6 +92,10 @@ public class ExpedienteController {
     @FXML
     private void volver(ActionEvent event) {
         Navegacion.cerrarVentana(event);
+    }
+
+    private static ExpedienteRepository repositorio() {
+        return new ExpedienteRepository(JpaUtil.getEntityManagerFactory());
     }
 
     private static String texto(String s) {
