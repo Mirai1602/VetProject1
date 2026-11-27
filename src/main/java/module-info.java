@@ -15,6 +15,8 @@ module com.proyectofinal.veterinarialosarcos {
     requires com.github.librepdf.openpdf;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.dataformat.xml;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
 
     opens com.proyectofinal.veterinarialosarcos.models
             to org.hibernate.orm.core;

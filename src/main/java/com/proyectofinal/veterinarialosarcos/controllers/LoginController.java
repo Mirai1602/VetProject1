@@ -62,6 +62,7 @@ public class LoginController {
 
 
 
+
     @FXML
     private void mostrarRegistro(ActionEvent event) {
         Navegacion.irA(event, "Registro.fxml");

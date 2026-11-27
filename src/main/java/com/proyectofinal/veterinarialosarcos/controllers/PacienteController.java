@@ -2,6 +2,7 @@ package com.proyectofinal.veterinarialosarcos.controllers;
 
 import com.proyectofinal.veterinarialosarcos.models.Paciente;
 import com.proyectofinal.veterinarialosarcos.repositories.PacienteRepository;
+import com.proyectofinal.veterinarialosarcos.services.ExcelService;
 import com.proyectofinal.veterinarialosarcos.utils.JpaUtil;
 import com.proyectofinal.veterinarialosarcos.utils.Sesion;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,7 +19,10 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.List;
 import java.util.function.Function;
+
+
 
 public class PacienteController {
 
@@ -80,6 +84,66 @@ public class PacienteController {
             tablaPacientes.setPlaceholder(new Label("No se pudieron cargar los pacientes."));
         }
     }
+    PacienteRepository PacienteRepository =
+            new PacienteRepository(
+                    JpaUtil.getEntityManager()
+                            .getEntityManagerFactory()
+            );
+
+    List<Paciente> Paciente =
+            PacienteRepository
+                    .listarPorUsuario(
+                            Sesion.getUsuario().getId()
+                    );
+    @FXML
+    private void generarReporteExcel() {
+
+        try {
+
+            List<Paciente> pacientes =
+                    PacienteRepository.listarPorUsuario(
+                            Sesion.getUsuario().getId()
+                    );
+
+            ExcelService excelService =
+                    new ExcelService();
+
+            excelService
+                    .generarReportePacientes(
+                            pacientes
+                    );
+
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.INFORMATION
+                    );
+
+            alert.setTitle("Reporte");
+
+            alert.setHeaderText(null);
+
+            alert.setContentText(
+                    "Reporte Excel generado correctamente."
+            );
+
+            alert.showAndWait();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.ERROR
+                    );
+
+            alert.setContentText(
+                    "No se pudo generar el reporte."
+            );
+
+            alert.showAndWait();
+        }
+    }
 
     @FXML
     private void nuevoPaciente(ActionEvent event) {
@@ -111,3 +175,5 @@ public class PacienteController {
         return s == null ? "" : s;
     }
 }
+
+
