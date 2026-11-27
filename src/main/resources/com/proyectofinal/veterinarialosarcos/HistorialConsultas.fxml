@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Expediente del paciente: datos permanentes + historial de consultas (nunca se sobrescriben) -->
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.proyectofinal.veterinarialosarcos.controllers.HistorialConsultasController"
+            prefWidth="860"
+            prefHeight="640"
+            styleClass="main-container"
+            stylesheets="@expediente.css">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <VBox spacing="16">
+            <padding>
+                <Insets bottom="16"/>
+            </padding>
+
+            <Button text="← Atrás"
+                    onAction="#volver"
+                    styleClass="volver-button"/>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label fx:id="lblTitulo"
+                       text="Expediente"
+                       styleClass="title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblNumero" styleClass="numero"/>
+            </HBox>
+
+            <GridPane hgap="30" vgap="8" styleClass="info-card">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="90"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                    <ColumnConstraints minWidth="90"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Paciente" styleClass="dato" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="lblPaciente" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Especie" styleClass="dato" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <Label fx:id="lblEspecie" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                <Label text="Raza" styleClass="dato" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="lblRaza" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Sexo" styleClass="dato" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <Label fx:id="lblSexo" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                <Label text="Edad" styleClass="dato" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="lblEdad" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Propietario" styleClass="dato" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                <Label fx:id="lblPropietario" text="—" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                <Label text="Teléfono" styleClass="dato" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                <Label fx:id="lblTelefono" text="—" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+            </GridPane>
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="📋 Historial de consultas" styleClass="section-title"/>
+                <Label fx:id="lblTotal" styleClass="contador"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnVerConsulta"
+                        text="Ver consulta"
+                        onAction="#verConsulta"
+                        styleClass="secondary-button"/>
+                <Button text="＋ Nueva consulta"
+                        onAction="#nuevaConsulta"
+                        styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tablaConsultas" styleClass="tabla">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="110"/>
+                <TableColumn fx:id="colMotivo" text="Motivo" prefWidth="400"/>
+                <TableColumn fx:id="colTemperatura" text="Temperatura" prefWidth="110"/>
+                <TableColumn fx:id="colPeso" text="Peso" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>

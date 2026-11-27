@@ -95,15 +95,15 @@
                 </HBox>
                 <HBox spacing="10" alignment="TOP_LEFT">
                     <Label text="2" styleClass="step-number"/>
-                    <Label text="Revisa los datos generales del paciente y su propietario en la parte superior." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                    <Label text="Arriba verás los datos del paciente; abajo, todas sus consultas de la más reciente a la más antigua. Haz doble clic en una (o «Ver consulta») para leerla." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
                 </HBox>
                 <HBox spacing="10" alignment="TOP_LEFT">
                     <Label text="3" styleClass="step-number"/>
-                    <Label text="Escribe el historial de vacunación, desparasitación, control de parásitos y observaciones." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                    <Label text="Pulsa «＋ Nueva consulta» y llena la ficha: motivo, examen clínico, temperatura, peso, dieta, comentarios y vacunas aplicadas." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
                 </HBox>
                 <HBox spacing="10" alignment="TOP_LEFT">
                     <Label text="4" styleClass="step-number"/>
-                    <Label text="Pulsa «Guardar Cambios» para conservar la información. Usa «← Atrás» para cerrar el expediente." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
+                    <Label text="Pulsa «Guardar consulta». Cada visita se agrega al expediente y nunca reemplaza a las anteriores." wrapText="true" styleClass="step-text" HBox.hgrow="ALWAYS" maxWidth="420"/>
                 </HBox>
             </VBox>
             <VBox styleClass="card" spacing="12" prefWidth="490">

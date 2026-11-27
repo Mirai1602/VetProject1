@@ -2,7 +2,7 @@
 -- de la tabla "paciente" a la nueva tabla "expediente" (uno por paciente).
 -- Se crea la tabla aquí (en vez de dejarla a Hibernate) para poder copiar los datos
 -- existentes antes de arrancar. En una base nueva no hace nada: Hibernate la crea.
--- Las columnas viejas de "paciente" se conservan por seguridad; ya no se usan.
+-- Las columnas viejas de "paciente" se eliminan después en V6.
 DO $$
 BEGIN
     IF EXISTS (SELECT 1 FROM information_schema.tables

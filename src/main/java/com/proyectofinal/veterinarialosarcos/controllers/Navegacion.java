@@ -57,9 +57,22 @@ final class Navegacion {
         stage.showAndWait();
     }
 
+    /** Abre el expediente (carpeta clínica) del paciente: su historial de consultas. */
     static void abrirExpediente(Node origen, Paciente paciente) {
-        Navegacion.<ExpedienteController>abrirModal(origen, "Expediente.fxml",
+        Navegacion.<HistorialConsultasController>abrirModal(origen, "HistorialConsultas.fxml",
                 "Expediente de " + paciente.getNombre(), c -> c.setPaciente(paciente));
+    }
+
+    /** Abre una ficha en blanco para registrar una visita nueva del paciente. */
+    static void abrirNuevaConsulta(Node origen, Paciente paciente) {
+        Navegacion.<ConsultaController>abrirModal(origen, "Consulta.fxml",
+                "Nueva consulta · " + paciente.getNombre(), c -> c.nuevaConsulta(paciente));
+    }
+
+    /** Muestra (solo lectura) una consulta ya registrada. */
+    static void abrirConsulta(Node origen, Paciente paciente, Long consultaId) {
+        Navegacion.<ConsultaController>abrirModal(origen, "Consulta.fxml",
+                "Consulta · " + paciente.getNombre(), c -> c.verConsulta(paciente, consultaId));
     }
 
     static void cerrarVentana(ActionEvent event) {

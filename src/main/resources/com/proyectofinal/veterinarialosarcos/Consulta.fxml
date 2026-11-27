@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Una consulta = una hoja de la ficha clínica física -->
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.proyectofinal.veterinarialosarcos.controllers.ConsultaController"
+            prefWidth="820"
+            prefHeight="760"
+            styleClass="main-container"
+            stylesheets="@expediente.css">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <padding>
+                <Insets top="16" right="20" bottom="8" left="20"/>
+            </padding>
+            <Button text="← Atrás"
+                    onAction="#volver"
+                    styleClass="volver-button"/>
+            <Label fx:id="lblTitulo" text="Consulta" styleClass="title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblNumero" styleClass="numero"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-container">
+            <VBox fx:id="formulario" spacing="16">
+                <padding>
+                    <Insets top="8" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <!-- Datos del paciente y fecha -->
+                <GridPane hgap="24" vgap="8" styleClass="info-card">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="80"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints minWidth="80"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Label text="Paciente" styleClass="dato" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblPaciente" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Fecha" styleClass="dato" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <DatePicker fx:id="dpFecha" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Especie" styleClass="dato" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblEspecie" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="Raza" styleClass="dato" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <Label fx:id="lblRaza" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                    <Label text="Sexo" styleClass="dato" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblSexo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Edad" styleClass="dato" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <Label fx:id="lblEdad" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                    <Label text="Propietario" styleClass="dato" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblPropietario" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <!-- Motivo -->
+                <VBox spacing="8" styleClass="section-card">
+                    <Label text="🩺 Motivo de la consulta" styleClass="section-title"/>
+                    <TextArea fx:id="txtMotivo"
+                              wrapText="true"
+                              promptText="Ej.: Vacunación, control general, vómito desde ayer..."
+                              prefRowCount="2"/>
+                </VBox>
+
+                <!-- Examen clínico: las filas las crea ConsultaController -->
+                <VBox spacing="8" styleClass="section-card">
+                    <Label text="🔍 Examen clínico" styleClass="section-title"/>
+                    <GridPane fx:id="gridExamen" hgap="10" vgap="6" styleClass="examen">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="180"/>
+                            <ColumnConstraints minWidth="90" halignment="CENTER"/>
+                            <ColumnConstraints minWidth="90" halignment="CENTER"/>
+                            <ColumnConstraints minWidth="110" halignment="CENTER"/>
+                        </columnConstraints>
+                        <Label text="Apartado" styleClass="dato" GridPane.columnIndex="0"/>
+                        <Label text="Normal" styleClass="dato" GridPane.columnIndex="1"/>
+                        <Label text="Anormal" styleClass="dato" GridPane.columnIndex="2"/>
+                        <Label text="No examinado" styleClass="dato" GridPane.columnIndex="3"/>
+                    </GridPane>
+                </VBox>
+
+                <!-- Constantes -->
+                <HBox spacing="16" styleClass="section-card" alignment="CENTER_LEFT">
+                    <Label text="🌡 Temperatura" styleClass="section-title"/>
+                    <TextField fx:id="txtTemperatura" promptText="38.5" prefColumnCount="5"/>
+                    <Label text="°C"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="⚖ Peso" styleClass="section-title"/>
+                    <TextField fx:id="txtPeso" promptText="12.4" prefColumnCount="5"/>
+                    <Label text="kg"/>
+                </HBox>
+
+                <!-- Dieta -->
+                <VBox spacing="8" styleClass="section-card">
+                    <Label text="🍽 Dieta" styleClass="section-title"/>
+                    <TextArea fx:id="txtDieta" wrapText="true" prefRowCount="2"
+                              promptText="Ej.: Croquetas adulto, 2 veces al día"/>
+                </VBox>
+
+                <!-- Comentarios -->
+                <VBox spacing="8" styleClass="section-card">
+                    <Label text="📝 Comentarios" styleClass="section-title"/>
+                    <TextArea fx:id="txtComentarios" wrapText="true" prefRowCount="4"/>
+                </VBox>
+
+                <!-- Vacunaciones -->
+                <VBox spacing="8" styleClass="section-card">
+                    <Label text="💉 Vacunaciones" styleClass="section-title"/>
+                    <HBox fx:id="boxAgregarVacuna" spacing="10" alignment="CENTER_LEFT">
+                        <ComboBox fx:id="cmbVacuna" promptText="Vacuna" prefWidth="280"/>
+                        <DatePicker fx:id="dpFechaVacuna" prefWidth="150"/>
+                        <Button text="Agregar" onAction="#agregarVacuna" styleClass="secondary-button"/>
+                    </HBox>
+                    <TableView fx:id="tablaVacunas" prefHeight="140" styleClass="tabla">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn fx:id="colVacuna" text="Vacuna" prefWidth="400"/>
+                            <TableColumn fx:id="colFechaVacuna" text="Fecha de aplicación" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                    <Button fx:id="btnQuitarVacuna" text="Quitar seleccionada"
+                            onAction="#quitarVacuna" styleClass="volver-button"/>
+                </VBox>
+
+                <Button fx:id="btnGuardar"
+                        text="Guardar consulta"
+                        onAction="#guardar"
+                        maxWidth="Infinity"
+                        styleClass="save-button"/>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

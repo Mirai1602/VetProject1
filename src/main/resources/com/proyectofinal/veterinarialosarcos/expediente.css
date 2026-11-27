@@ -105,3 +105,54 @@
     -fx-text-fill: #018081;
     -fx-font-weight: bold;
 }
+/* ---- Historial de consultas y ficha de consulta ---- */
+
+.primary-button {
+    -fx-background-color: #018081;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #016a6b;
+}
+
+.secondary-button {
+    -fx-background-color: white;
+    -fx-border-color: #018081;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #018081;
+    -fx-font-weight: bold;
+    -fx-padding: 7 14 7 14;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #e0f2f1;
+}
+
+.contador {
+    -fx-text-fill: #636e72;
+}
+
+.tabla {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.examen .examen-nombre {
+    -fx-font-size: 13px;
+}
+
+/* Consulta registrada: los campos se ven normales aunque estén bloqueados */
+.solo-lectura .text-input:disabled,
+.solo-lectura .radio-button:disabled,
+.solo-lectura .combo-box-base:disabled,
+.solo-lectura .date-picker:disabled,
+.solo-lectura .table-view:disabled {
+    -fx-opacity: 1;
+}
