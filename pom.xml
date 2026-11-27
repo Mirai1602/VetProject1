@@ -29,10 +29,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.6.18.Final</version>
         </dependency>
+        <!-- Reportes PDF (plantillas .jrxml editables con Jaspersoft Studio) -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>6.21.3</version>
+            <version>6.21.5</version>
         </dependency>
 
         <dependency>
@@ -53,12 +54,6 @@
             <version>42.7.7</version>
         </dependency>
 
-        <!-- Reportes PDF (plantillas .jrxml editables con Jaspersoft Studio) -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>6.21.5</version>
-        </dependency>
         <!-- Fuente DejaVu Sans incrustada en el PDF (acentos, ñ, °, —) -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
